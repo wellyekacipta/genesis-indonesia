@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Genesis Indo Education Centre | Beranda')
+@section('title', 'Genesis Indonesia Education Centre | Beranda')
 
 @section('content')
 <!-- Hero Section -->
@@ -14,7 +14,7 @@
             {{ app()->getLocale() == 'id' ? 'Pendaftaran Olimpiade Nasional 2026 Dibuka!' : 'National Olympiad 2026 Registration is Now Open!' }}
         </span>
         <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-            Genesis Indo <br/> <span class="text-genesis-pink">Education Centre</span>
+            Genesis Indonesia <br/> <span class="text-genesis-pink">Education Centre</span>
         </h1>
         <p class="text-gray-200 text-sm md:text-lg mb-10 max-w-3xl mx-auto leading-relaxed">
             {{ app()->getLocale() == 'id' 
@@ -89,8 +89,8 @@
                 </h2>
                 <p class="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed text-base text-justify">
                     {{ app()->getLocale() == 'id' 
-                        ? 'Selamat datang di Genesis Indo. Kami berkomitmen menciptakan wadah kompetisi yang transparan, profesional, dan berkualitas bagi siswa seluruh Indonesia untuk mengasah potensi akademik terbaik mereka di kancah nasional maupun internasional.' 
-                        : 'Welcome to Genesis Indo. We are committed to creating a transparent, professional, and high-quality competition platform for students across Indonesia to hone their best academic potential on the national and international stage.' 
+                        ? 'Selamat datang di Genesis Indonesia. Kami berkomitmen menciptakan wadah kompetisi yang transparan, profesional, dan berkualitas bagi siswa seluruh Indonesia untuk mengasah potensi akademik terbaik mereka di kancah nasional maupun internasional.' 
+                        : 'Welcome to Genesis Indonesia. We are committed to creating a transparent, professional, and high-quality competition platform for students across Indonesia to hone their best academic potential on the national and international stage.' 
                     }}
                 </p>
                 <a href="#" class="inline-flex items-center text-genesis-pink font-bold hover:underline group">
@@ -199,8 +199,8 @@
                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Prof. Dr. Budi Santoso, M.Pd.</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-xs px-4 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
-                        ? 'Guru Besar Teknologi Pendidikan yang mengawasi mutu akademik program Genesis Indo.' 
-                        : 'Professor of Educational Technology overseeing the academic quality of Genesis Indo programs.' 
+                        ? 'Guru Besar Teknologi Pendidikan yang mengawasi mutu akademik program Genesis Indonesia.' 
+                        : 'Professor of Educational Technology overseeing the academic quality of Genesis Indonesia programs.' 
                     }}
                 </p>
             </div>
@@ -307,8 +307,8 @@
                 <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Dewa Gede, Ph.D.</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-[11px] px-2 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
-                        ? 'Menghubungkan program delegasi Genesis Indo dengan kompetisi dan universitas tingkat global.' 
-                        : 'Connects Genesis Indo delegation programs with global level competitions and universities.' 
+                        ? 'Menghubungkan program delegasi Genesis Indonesia dengan kompetisi dan universitas tingkat global.' 
+                        : 'Connects Genesis Indonesia delegation programs with global level competitions and universities.' 
                     }}
                 </p>
             </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', app()->getLocale() == 'id' ? 'Artikel & Berita - Genesis Indo' : 'Articles & News - Genesis Indo')
-@section('meta_description', 'Kumpulan berita, artikel pendidikan, dan liputan kegiatan terbaru dari Genesis Indo.')
+@section('title', app()->getLocale() == 'id' ? 'Artikel & Berita - Genesis Indonesia' : 'Articles & News - Genesis Indonesia')
+@section('meta_description', 'Kumpulan berita, artikel pendidikan, dan liputan kegiatan terbaru dari Genesis Indonesia.')
 
 @section('content')
 <!-- Page Header -->
@@ -13,8 +13,8 @@
         </h1>
         <p class="text-blue-100/90 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
             {{ app()->getLocale() == 'id'
-                ? 'Temukan informasi terbaru, artikel edukasi, panduan olimpiade, dan liputan kegiatan dari Genesis Indo.'
-                : 'Find the latest information, educational articles, olympiad guides, and event coverage from Genesis Indo.'
+                ? 'Temukan informasi terbaru, artikel edukasi, panduan olimpiade, dan liputan kegiatan dari Genesis Indonesia.'
+                : 'Find the latest information, educational articles, olympiad guides, and event coverage from Genesis Indonesia.'
             }}
         </p>
     </div>

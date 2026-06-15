@@ -5,7 +5,7 @@
     $content = app()->getLocale() == 'id' ? $article->content_id : $article->content_en;
 @endphp
 
-@section('title', $article->seo_title ? $article->seo_title : $title . ' - Genesis Indo')
+@section('title', $article->seo_title ? $article->seo_title : $title . ' - Genesis Indonesia')
 @section('meta_description', $article->seo_description ? $article->seo_description : \Illuminate\Support\Str::limit(strip_tags($content), 150))
 
 @section('content')
@@ -72,7 +72,7 @@
                                         <h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">
                                             {{ app()->getLocale() == 'id' ? 'Dokumen Lampiran PDF' : 'PDF Attachment Document' }}
                                         </h4>
-                                        <p class="text-xs text-gray-550 dark:text-gray-400 mt-1 truncate max-w-[250px] md:max-w-[400px]">
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate max-w-[250px] md:max-w-[400px]">
                                             {{ basename($article->pdf_file) }}
                                         </p>
                                     </div>
@@ -136,7 +136,7 @@
                         <!-- Footer Info -->
                         <div class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-700 flex flex-wrap justify-between items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
                             <div>
-                                {{ app()->getLocale() == 'id' ? 'Dipublikasikan oleh' : 'Published by' }}: **Genesis Indo Editor**
+                                {{ app()->getLocale() == 'id' ? 'Dipublikasikan oleh' : 'Published by' }}: **Genesis Indonesia Editor**
                             </div>
                             <div>
                                 {{ app()->getLocale() == 'id' ? 'Terakhir diperbarui' : 'Last updated' }}: {{ $article->updated_at->format('d M Y, H:i') }} WIB
