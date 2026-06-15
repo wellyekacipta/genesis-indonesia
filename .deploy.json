@@ -1,5 +1,6 @@
 {
   "repoPath": "/home/genesisindo/git/genesis-indonesia",
   "publicHtmlPath": "/home/genesisindo/public_html",
-  "branch": "main"
+  "branch": "main",
+  "phpPath": "/usr/local/apps/php83/bin/php"
 }

@@ -6,7 +6,8 @@ import path from 'path';
 let config = {
     repoPath: '/home/genesisindo/git/genesis-indonesia',
     publicHtmlPath: '/home/genesisindo/public_html',
-    branch: 'main'
+    branch: 'main',
+    phpPath: 'php'
 };
 
 const configPath = path.resolve('./.deploy.json');
@@ -24,6 +25,7 @@ if (fs.existsSync(configPath)) {
 const repoPath = config.repoPath;
 const publicHtmlPath = config.publicHtmlPath;
 const branch = config.branch || 'main';
+const phpCmd = config.phpPath || 'php';
 const publicFolder = path.join(repoPath, 'public');
 
 function runCmd(command, cwd = repoPath) {
@@ -38,21 +40,31 @@ function runCmd(command, cwd = repoPath) {
 }
 
 console.log('🚀 Starting Deployment...');
+console.log(`Using PHP command: ${phpCmd}`);
 
 // 1. Pull latest code
 runCmd(`git pull origin ${branch}`);
 
 // 2. Check and run Composer
 let composerCmd = 'composer';
-try {
-    execSync('command -v composer');
-} catch (e) {
-    console.log('⚠️ composer command not found globally. Checking for local composer.phar...');
+if (phpCmd !== 'php') {
+    console.log('Checking for local composer.phar...');
     if (!fs.existsSync(path.join(repoPath, 'composer.phar'))) {
         console.log('Downloading composer.phar...');
-        runCmd('curl -sS https://getcomposer.org/installer | php');
+        runCmd(`curl -sS https://getcomposer.org/installer | ${phpCmd}`);
     }
-    composerCmd = 'php composer.phar';
+    composerCmd = `${phpCmd} composer.phar`;
+} else {
+    try {
+        execSync('command -v composer');
+    } catch (e) {
+        console.log('⚠️ composer command not found globally. Checking for local composer.phar...');
+        if (!fs.existsSync(path.join(repoPath, 'composer.phar'))) {
+            console.log('Downloading composer.phar...');
+            runCmd(`curl -sS https://getcomposer.org/installer | ${phpCmd}`);
+        }
+        composerCmd = `${phpCmd} composer.phar`;
+    }
 }
 
 runCmd(`${composerCmd} install --no-dev --optimize-autoloader`);
@@ -73,10 +85,10 @@ if (hasNpm) {
 }
 
 // 4. Run database migrations
-runCmd('php artisan migrate --force');
+runCmd(`${phpCmd} artisan migrate --force`);
 
 // 5. Clear and optimize Laravel caches
-runCmd('php artisan optimize');
+runCmd(`${phpCmd} artisan optimize`);
 
 // 6. Handle Symlink for public_html
 console.log('\nSetting up public_html symlink...');

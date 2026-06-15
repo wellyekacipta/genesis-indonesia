@@ -7,6 +7,7 @@ set -e
 REPO_PATH="/home/genesisindo/git/genesis-indonesia"
 PUBLIC_HTML="/home/genesisindo/public_html"
 BRANCH="main"
+PHP_CMD="php"
 
 # Parse .deploy.json if it exists
 if [ -f ".deploy.json" ]; then
@@ -14,9 +15,11 @@ if [ -f ".deploy.json" ]; then
     REPO_PATH=$(grep -o '"repoPath": "[^"]*' .deploy.json | grep -o '[^"]*$' || echo "$REPO_PATH")
     PUBLIC_HTML=$(grep -o '"publicHtmlPath": "[^"]*' .deploy.json | grep -o '[^"]*$' || echo "$PUBLIC_HTML")
     BRANCH=$(grep -o '"branch": "[^"]*' .deploy.json | grep -o '[^"]*$' || echo "$BRANCH")
+    PHP_CMD=$(grep -o '"phpPath": "[^"]*' .deploy.json | grep -o '[^"]*$' || echo "$PHP_CMD")
 fi
 
 echo "🚀 Starting Deployment in $REPO_PATH..."
+echo "Using PHP command: $PHP_CMD"
 
 cd "$REPO_PATH"
 
@@ -25,15 +28,15 @@ echo "Pulling latest changes from Git (branch: $BRANCH)..."
 git pull origin "$BRANCH"
 
 # 2. Check and run Composer
-if command -v composer >/dev/null 2>&1; then
+if command -v composer >/dev/null 2>&1 && [ "$PHP_CMD" = "php" ]; then
     COMPOSER_CMD="composer"
 else
-    echo "⚠️ composer command not found globally. Checking for composer.phar locally..."
+    echo "Checking for composer.phar locally..."
     if [ ! -f "composer.phar" ]; then
         echo "Downloading composer.phar..."
-        curl -sS https://getcomposer.org/installer | php
+        curl -sS https://getcomposer.org/installer | $PHP_CMD
     fi
-    COMPOSER_CMD="php composer.phar"
+    COMPOSER_CMD="$PHP_CMD composer.phar"
 fi
 
 echo "Installing Composer dependencies..."
@@ -51,11 +54,11 @@ fi
 
 # 4. Run Laravel migrations
 echo "Running database migrations..."
-php artisan migrate --force
+$PHP_CMD artisan migrate --force
 
 # 5. Optimize Laravel caches
 echo "Optimizing Laravel configuration and routes..."
-php artisan optimize
+$PHP_CMD artisan optimize
 
 # 6. Set up the public_html symlink
 echo "Configuring public_html symlink..."
