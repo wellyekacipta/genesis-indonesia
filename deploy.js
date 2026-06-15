@@ -2,9 +2,28 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-// Configurations
-const repoPath = '/home/genesisindo/git/genesis-indonesia';
-const publicHtmlPath = '/home/genesisindo/public_html';
+// Load configurations from deploy.json
+let config = {
+    repoPath: '/home/genesisindo/git/genesis-indonesia',
+    publicHtmlPath: '/home/genesisindo/public_html',
+    branch: 'main'
+};
+
+const configPath = path.resolve('./deploy.json');
+if (fs.existsSync(configPath)) {
+    try {
+        config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        console.log('📖 Loaded configuration from deploy.json');
+    } catch (error) {
+        console.error('⚠️ Warning: Failed to parse deploy.json, using defaults.');
+    }
+} else {
+    console.log('ℹ️ deploy.json not found, using default configuration.');
+}
+
+const repoPath = config.repoPath;
+const publicHtmlPath = config.publicHtmlPath;
+const branch = config.branch || 'main';
 const publicFolder = path.join(repoPath, 'public');
 
 function runCmd(command, cwd = repoPath) {
@@ -21,7 +40,7 @@ function runCmd(command, cwd = repoPath) {
 console.log('🚀 Starting Deployment...');
 
 // 1. Pull latest code
-runCmd('git pull origin main'); // or change to your branch name if different
+runCmd(`git pull origin ${branch}`);
 
 // 2. Install PHP dependencies
 runCmd('composer install --no-dev --optimize-autoloader');
