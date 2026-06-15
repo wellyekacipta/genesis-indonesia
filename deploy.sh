@@ -24,14 +24,30 @@ cd "$REPO_PATH"
 echo "Pulling latest changes from Git (branch: $BRANCH)..."
 git pull origin "$BRANCH"
 
-# 2. Install Composer dependencies
-echo "Installing Composer dependencies..."
-composer install --no-dev --optimize-autoloader
+# 2. Check and run Composer
+if command -v composer >/dev/null 2>&1; then
+    COMPOSER_CMD="composer"
+else
+    echo "⚠️ composer command not found globally. Checking for composer.phar locally..."
+    if [ ! -f "composer.phar" ]; then
+        echo "Downloading composer.phar..."
+        curl -sS https://getcomposer.org/installer | php
+    fi
+    COMPOSER_CMD="php composer.phar"
+fi
 
-# 3. Install NPM dependencies & build assets
-echo "Installing NPM dependencies and building assets..."
-npm install
-npm run build
+echo "Installing Composer dependencies..."
+$COMPOSER_CMD install --no-dev --optimize-autoloader
+
+# 3. Check and run NPM/Vite Build
+if command -v npm >/dev/null 2>&1; then
+    echo "Installing NPM dependencies and building assets..."
+    npm install
+    npm run build
+else
+    echo "⚠️ Warning: npm command not found on the server. Skipping npm build."
+    echo "Note: If Node/NPM is not installed, please build the assets locally (npm run build) and push the 'public/build' folder to GitHub."
+fi
 
 # 4. Run Laravel migrations
 echo "Running database migrations..."

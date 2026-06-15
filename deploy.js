@@ -42,22 +42,43 @@ console.log('🚀 Starting Deployment...');
 // 1. Pull latest code
 runCmd(`git pull origin ${branch}`);
 
-// 2. Install PHP dependencies
-runCmd('composer install --no-dev --optimize-autoloader');
+// 2. Check and run Composer
+let composerCmd = 'composer';
+try {
+    execSync('command -v composer');
+} catch (e) {
+    console.log('⚠️ composer command not found globally. Checking for local composer.phar...');
+    if (!fs.existsSync(path.join(repoPath, 'composer.phar'))) {
+        console.log('Downloading composer.phar...');
+        runCmd('curl -sS https://getcomposer.org/installer | php');
+    }
+    composerCmd = 'php composer.phar';
+}
 
-// 3. Install JS dependencies
-runCmd('npm install');
+runCmd(`${composerCmd} install --no-dev --optimize-autoloader`);
 
-// 4. Build frontend assets
-runCmd('npm run build');
+// 3. Check and run NPM/Vite Build
+let hasNpm = false;
+try {
+    execSync('command -v npm');
+    hasNpm = true;
+} catch (e) {
+    console.log('⚠️ Warning: npm command not found on the server. Skipping npm build.');
+    console.log('Note: If Node/NPM is not installed, please build the assets locally (npm run build) and push the \'public/build\' folder to GitHub.');
+}
 
-// 5. Run database migrations
+if (hasNpm) {
+    runCmd('npm install');
+    runCmd('npm run build');
+}
+
+// 4. Run database migrations
 runCmd('php artisan migrate --force');
 
-// 6. Clear and optimize Laravel caches
+// 5. Clear and optimize Laravel caches
 runCmd('php artisan optimize');
 
-// 7. Handle Symlink for public_html
+// 6. Handle Symlink for public_html
 console.log('\nSetting up public_html symlink...');
 if (fs.existsSync(publicHtmlPath)) {
     const stats = fs.lstatSync(publicHtmlPath);
