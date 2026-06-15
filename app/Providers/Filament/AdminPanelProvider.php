@@ -33,7 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => '#1e40af', // genesis-blue
             ])
-            ->brandName('Genesis Indonesia')
+            ->brandName('Genesis Indo')
             ->font('Poppins')
             ->renderHook(
                 PanelsRenderHook::STYLES_AFTER,

@@ -64,7 +64,7 @@
         </form>
     </div>
     
-    <!-- Right Panel: Welcome Banner (Logo Genesis Indonesia) -->
+    <!-- Right Panel: Welcome Banner (Logo Genesis Indo) -->
     <div class="w-full md:w-1/2 bg-gradient-to-br from-genesis-pink to-genesis-pinkDark p-12 md:p-16 flex flex-col justify-center items-center text-center text-white relative">
         <div class="flex flex-col items-center">
             <a href="{{ route('home') }}" class="mb-6 hover:scale-105 transition-transform duration-300 inline-block">
@@ -72,7 +72,7 @@
                      alt="Logo Genesis" 
                      class="w-24 h-24 md:w-32 md:h-32 object-contain bg-white rounded-full p-2 shadow-2xl border-4 border-white/20">
             </a>
-            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight leading-none mb-2 text-white">GENESIS INDONESIA</h1>
+            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight leading-none mb-2 text-white">GENESIS INDO</h1>
             <p class="text-xs md:text-sm text-white/80 font-bold tracking-widest uppercase mb-8">Education Centre</p>
             <a href="{{ route('home') }}" class="border border-white/40 bg-white/10 hover:bg-white hover:text-genesis-pink text-white font-bold px-10 py-3.5 rounded-full transition duration-300 tracking-wider text-xs shadow-lg backdrop-blur-sm active:scale-95">
                 <i class="fa-solid fa-arrow-left mr-2"></i> {{ app()->getLocale() == 'id' ? 'KEMBALI KE BERANDA' : 'BACK TO HOME' }}

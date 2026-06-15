@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', app()->getLocale() == 'id' ? 'Layanan Akademik Unggulan - Genesis Indonesia' : 'Elite Academic Services - Genesis Indonesia')
+@section('title', app()->getLocale() == 'id' ? 'Layanan Akademik Unggulan - Genesis Indo' : 'Elite Academic Services - Genesis Indo')
 
 @section('content')
 <!-- Hero Section -->
@@ -35,8 +35,8 @@
                     </h2>
                     <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base mb-8 leading-relaxed">
                         {{ app()->getLocale() == 'id'
-                            ? 'National Science Olympiad (NSO) adalah kompetisi akademik berskala nasional yang diselenggarakan secara berkala oleh Genesis Indonesia. Kompetisi ini menguji pemahaman konsep, logika berpikir, dan kemampuan pemecahan masalah siswa dalam berbagai disiplin sains dan teknologi.'
-                            : 'National Science Olympiad (NSO) is a national-scale academic competition held regularly by Genesis Indonesia. This competition tests students\' conceptual understanding, logical thinking, and problem-solving abilities in various disciplines of science and technology.'
+                            ? 'National Science Olympiad (NSO) adalah kompetisi akademik berskala nasional yang diselenggarakan secara berkala oleh Genesis Indo. Kompetisi ini menguji pemahaman konsep, logika berpikir, dan kemampuan pemecahan masalah siswa dalam berbagai disiplin sains dan teknologi.'
+                            : 'National Science Olympiad (NSO) is a national-scale academic competition held regularly by Genesis Indo. This competition tests students\' conceptual understanding, logical thinking, and problem-solving abilities in various disciplines of science and technology.'
                         }}
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -57,7 +57,7 @@
                             {{ app()->getLocale() == 'id' ? 'Portal Ujian Online Handal' : 'Reliable Online Exam Portal' }}
                         </div>
                     </div>
-                    <a href="https://wa.me/6285179637420?text=Halo%20Genesis%20Indonesia,%20saya%20tertarik%20mendaftar%20National%20Science%20Olympiad" 
+                    <a href="https://wa.me/6285179637420?text=Halo%20Genesis%20Indo,%20saya%20tertarik%20mendaftar%20National%20Science%20Olympiad" 
                        target="_blank" 
                        class="inline-flex items-center justify-center bg-genesis-pink hover:bg-genesis-pinkDark text-white font-bold px-8 py-3 rounded-xl transition shadow-lg active:scale-95">
                         {{ app()->getLocale() == 'id' ? 'Daftar Kompetisi' : 'Register Now' }}
@@ -106,7 +106,7 @@
                             {{ app()->getLocale() == 'id' ? 'Sesi Konsultasi Eksklusif' : 'Exclusive Consultation Session' }}
                         </div>
                     </div>
-                    <a href="https://wa.me/6285179637420?text=Halo%20Genesis%20Indonesia,%20saya%20tertarik%2520mengikuti%20Intensive%20Mentoring" 
+                    <a href="https://wa.me/6285179637420?text=Halo%20Genesis%20Indo,%20saya%20tertarik%20mengikuti%20Intensive%20Mentoring" 
                        target="_blank" 
                        class="inline-flex items-center justify-center bg-genesis-pink hover:bg-genesis-pinkDark text-white font-bold px-8 py-3 rounded-xl transition shadow-lg active:scale-95">
                         {{ app()->getLocale() == 'id' ? 'Hubungi Admin Bimbingan' : 'Contact Mentoring Team' }}
@@ -133,8 +133,8 @@
                     </h2>
                     <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base mb-8 leading-relaxed">
                         {{ app()->getLocale() == 'id'
-                            ? 'Genesis Indonesia memfasilitasi dan mendampingi siswa-siswi terbaik Indonesia untuk melangkah ke kancah global. Kami memberikan pembinaan mental, penyelarasan kurikulum kompetisi internasional, serta manajemen logistik penuh menuju kompetisi sains bergengsi di dunia luar.'
-                            : 'Genesis Indonesia facilitates and accompanies the best Indonesian students to step onto the global stage. We provide mental training, international competition curriculum alignment, and full logistical management toward prestigious science competitions worldwide.'
+                            ? 'Genesis Indo memfasilitasi dan mendampingi siswa-siswi terbaik Indonesia untuk melangkah ke kancah global. Kami memberikan pembinaan mental, penyelarasan kurikulum kompetisi internasional, serta manajemen logistik penuh menuju kompetisi sains bergengsi di dunia luar.'
+                            : 'Genesis Indo facilitates and accompanies the best Indonesian students to step onto the global stage. We provide mental training, international competition curriculum alignment, and full logistical management toward prestigious science competitions worldwide.'
                         }}
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -155,7 +155,7 @@
                             {{ app()->getLocale() == 'id' ? 'Pelatihan Adaptasi Budaya' : 'Cultural Adaptation Training' }}
                         </div>
                     </div>
-                    <a href="https://wa.me/6285179637420?text=Halo%20Genesis%20Indonesia,%20saya%20tertarik%20dengan%20program%20Global%20Delegation" 
+                    <a href="https://wa.me/6285179637420?text=Halo%20Genesis%20Indo,%20saya%20tertarik%20dengan%20program%20Global%20Delegation" 
                        target="_blank" 
                        class="inline-flex items-center justify-center bg-genesis-pink hover:bg-genesis-pinkDark text-white font-bold px-8 py-3 rounded-xl transition shadow-lg active:scale-95">
                         {{ app()->getLocale() == 'id' ? 'Konsultasi Delegasi' : 'Consult with Delegation Coordinator' }}

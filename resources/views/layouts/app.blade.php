@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>@yield('title', 'Genesis Indonesia Education Centre | Pusat Olimpiade Pendidikan Nasional')</title>
-    <meta name="description" content="@yield('meta_description', 'Genesis Indonesia Education Centre. Organisasi pelatihan dan penyelenggara olimpiade pendidikan nasional unggulan.')">
+    <title>@yield('title', 'Genesis Indo Education Centre | Pusat Olimpiade Pendidikan Nasional')</title>
+    <meta name="description" content="@yield('meta_description', 'Genesis Indo Education Centre. Organisasi pelatihan dan penyelenggara olimpiade pendidikan nasional unggulan.')">
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/a/ACg8ocJW-BsErSCxATtNF1sjxdywseKWWUd7D0z6SkFU-DKGrIA_mqo=s432-c-no">
     
     <!-- Fonts and Icons -->
@@ -62,7 +62,7 @@
                              class="w-12 h-12 md:w-16 md:h-16 object-contain bg-white rounded-full p-1 shadow-sm border border-gray-100">
                     </a>
                     <a href="{{ route('home') }}">
-                        <div class="font-bold text-genesis-blue dark:text-blue-400 text-lg md:text-xl leading-tight tracking-tight">GENESIS INDONESIA</div>
+                        <div class="font-bold text-genesis-blue dark:text-blue-400 text-lg md:text-xl leading-tight tracking-tight">GENESIS INDO</div>
                         <p class="text-[8px] md:text-[10px] text-gray-500 dark:text-gray-400 font-bold tracking-widest uppercase">Education Centre</p>
                     </a>
                 </div>
@@ -181,7 +181,7 @@
                     <div class="flex items-center space-x-4 mb-8">
                         <img src="https://lh3.googleusercontent.com/a/ACg8ocJW-BsErSCxATtNF1sjxdywseKWWUd7D0z6SkFU-DKGrIA_mqo=s432-c-no" alt="Genesis Logo" class="w-20 h-20 bg-white rounded-full p-1 shadow-xl">
                         <div>
-                            <h3 class="text-2xl font-bold">Genesis Indonesia</h3>
+                            <h3 class="text-2xl font-bold">Genesis Indo</h3>
                             <p class="text-genesis-pink text-xs font-bold tracking-widest uppercase">Education Centre</p>
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                 </div>
             </div>
             <div class="border-t border-white/10 pt-12 text-center text-xs text-gray-400">
-                <p>&copy; {{ date('Y') }} Genesis Indonesia Education Centre. All Rights Reserved.</p>
+                <p>&copy; {{ date('Y') }} Genesis Indo Education Centre. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
