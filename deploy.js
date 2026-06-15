@@ -2,23 +2,23 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-// Load configurations from deploy.json
+// Load configurations from .deploy.json
 let config = {
     repoPath: '/home/genesisindo/git/genesis-indonesia',
     publicHtmlPath: '/home/genesisindo/public_html',
     branch: 'main'
 };
 
-const configPath = path.resolve('./deploy.json');
+const configPath = path.resolve('./.deploy.json');
 if (fs.existsSync(configPath)) {
     try {
         config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-        console.log('📖 Loaded configuration from deploy.json');
+        console.log('📖 Loaded configuration from .deploy.json');
     } catch (error) {
-        console.error('⚠️ Warning: Failed to parse deploy.json, using defaults.');
+        console.error('⚠️ Warning: Failed to parse .deploy.json, using defaults.');
     }
 } else {
-    console.log('ℹ️ deploy.json not found, using default configuration.');
+    console.log('ℹ️ .deploy.json not found, using default configuration.');
 }
 
 const repoPath = config.repoPath;

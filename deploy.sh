@@ -3,17 +3,17 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-# Default values if deploy.json parser fails
+# Default values if .deploy.json parser fails
 REPO_PATH="/home/genesisindo/git/genesis-indonesia"
 PUBLIC_HTML="/home/genesisindo/public_html"
 BRANCH="main"
 
-# Parse deploy.json if it exists
-if [ -f "deploy.json" ]; then
-    echo "📖 Loading configuration from deploy.json..."
-    REPO_PATH=$(grep -o '"repoPath": "[^"]*' deploy.json | grep -o '[^"]*$' || echo "$REPO_PATH")
-    PUBLIC_HTML=$(grep -o '"publicHtmlPath": "[^"]*' deploy.json | grep -o '[^"]*$' || echo "$PUBLIC_HTML")
-    BRANCH=$(grep -o '"branch": "[^"]*' deploy.json | grep -o '[^"]*$' || echo "$BRANCH")
+# Parse .deploy.json if it exists
+if [ -f ".deploy.json" ]; then
+    echo "📖 Loading configuration from .deploy.json..."
+    REPO_PATH=$(grep -o '"repoPath": "[^"]*' .deploy.json | grep -o '[^"]*$' || echo "$REPO_PATH")
+    PUBLIC_HTML=$(grep -o '"publicHtmlPath": "[^"]*' .deploy.json | grep -o '[^"]*$' || echo "$PUBLIC_HTML")
+    BRANCH=$(grep -o '"branch": "[^"]*' .deploy.json | grep -o '[^"]*$' || echo "$BRANCH")
 fi
 
 echo "🚀 Starting Deployment in $REPO_PATH..."
