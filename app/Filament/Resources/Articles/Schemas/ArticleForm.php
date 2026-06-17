@@ -32,13 +32,15 @@ class ArticleForm
                 RichEditor::make('content_en')
                     ->columnSpanFull(),
                 FileUpload::make('image')
-                    ->image(),
+                    ->image()
+                    ->disk('public'),
                 FileUpload::make('pdf_file')
                     ->label(fn () => app()->getLocale() == 'id' ? 'File PDF (Lampiran)' : 'PDF File (Attachment)')
                     ->acceptedFileTypes(['application/pdf'])
                     ->directory('articles/pdfs')
                     ->preserveFilenames()
-                    ->maxSize(10240), // 10MB
+                    ->maxSize(10240) // 10MB
+                    ->disk('public'),
                 TextInput::make('seo_title'),
                 Textarea::make('seo_description')
                     ->columnSpanFull(),

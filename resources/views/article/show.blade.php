@@ -64,15 +64,15 @@
                         <!-- PDF Attachment Card -->
                         @if($article->pdf_file)
                             <div class="mt-10 p-6 rounded-2xl bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-gray-750 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 transition-all duration-300 hover:border-genesis-pink/20 hover:shadow-xl">
-                                <div class="flex items-center space-x-4">
+                                <div class="flex items-center space-x-4 flex-1 min-w-0">
                                     <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center text-2xl flex-shrink-0">
                                         <i class="fa-solid fa-file-pdf"></i>
                                     </div>
-                                    <div class="min-w-0">
+                                    <div class="min-w-0 flex-1">
                                         <h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">
                                             {{ app()->getLocale() == 'id' ? 'Dokumen Lampiran PDF' : 'PDF Attachment Document' }}
                                         </h4>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate max-w-[250px] md:max-w-[400px]">
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate">
                                             {{ basename($article->pdf_file) }}
                                         </p>
                                     </div>
