@@ -60,6 +60,10 @@ $PHP_CMD artisan migrate --force
 echo "Optimizing Laravel configuration and routes..."
 $PHP_CMD artisan optimize
 
+# 5b. Ensure storage symbolic link exists
+echo "Recreating storage symbolic link..."
+$PHP_CMD artisan storage:link --force
+
 # 6. Set up the public_html symlink
 echo "Configuring public_html symlink..."
 if [ -L "$PUBLIC_HTML" ]; then

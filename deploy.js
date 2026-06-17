@@ -90,6 +90,9 @@ runCmd(`${phpCmd} artisan migrate --force`);
 // 5. Clear and optimize Laravel caches
 runCmd(`${phpCmd} artisan optimize`);
 
+// 5b. Ensure storage symbolic link exists
+runCmd(`${phpCmd} artisan storage:link --force`);
+
 // 6. Handle Symlink for public_html
 console.log('\nSetting up public_html symlink...');
 if (fs.existsSync(publicHtmlPath)) {
