@@ -7,6 +7,8 @@
 <header class="min-h-[85vh] flex items-center relative overflow-hidden pt-20 pb-32">
     <div class="absolute inset-0 z-0 bg-genesis-blue">
         <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('https://images.unsplash.com/photo-1523240715630-991cd2f70ac2?auto=format&fit=crop&w=1920&q=80')"></div>
+        <!-- Shadow overlay to create depth and contrast, blending beautifully with dark mode -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-gray-50/90 dark:to-gray-900 pointer-events-none transition-colors duration-300"></div>
     </div>
 
     <div class="container mx-auto px-4 relative z-10 text-center max-w-6xl">
