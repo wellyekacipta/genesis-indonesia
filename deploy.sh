@@ -4,8 +4,8 @@
 set -e
 
 # Default values if .deploy.json parser fails
-REPO_PATH="/home/genesisindo/git/genesis-indonesia"
-PUBLIC_HTML="/home/genesisindo/public_html"
+REPO_PATH="/home/genesisindonesia/htdocs/genesisindonesia.com"
+PUBLIC_HTML="/home/genesisindonesia/htdocs/genesisindonesia.com/public"
 BRANCH="main"
 PHP_CMD="php"
 
@@ -64,20 +64,24 @@ $PHP_CMD artisan optimize
 echo "Recreating storage symbolic link..."
 $PHP_CMD artisan storage:link --force
 
-# 6. Set up the public_html symlink
-echo "Configuring public_html symlink..."
-if [ -L "$PUBLIC_HTML" ]; then
-    echo "public_html is already a symlink."
-elif [ -d "$PUBLIC_HTML" ]; then
-    echo "Warning: $PUBLIC_HTML is a physical directory."
-    BACKUP_PATH="${PUBLIC_HTML}_backup_$(date +%s)"
-    echo "Backing up existing directory to $BACKUP_PATH..."
-    mv "$PUBLIC_HTML" "$BACKUP_PATH"
-    echo "Creating symlink to $REPO_PATH/public..."
-    ln -s "$REPO_PATH/public" "$PUBLIC_HTML"
+# 6. Set up the public_html symlink if applicable
+if [ "$PUBLIC_HTML" != "$REPO_PATH/public" ] && [ -n "$PUBLIC_HTML" ]; then
+    echo "Configuring public_html symlink..."
+    if [ -L "$PUBLIC_HTML" ]; then
+        echo "public_html is already a symlink."
+    elif [ -d "$PUBLIC_HTML" ]; then
+        echo "Warning: $PUBLIC_HTML is a physical directory."
+        BACKUP_PATH="${PUBLIC_HTML}_backup_$(date +%s)"
+        echo "Backing up existing directory to $BACKUP_PATH..."
+        mv "$PUBLIC_HTML" "$BACKUP_PATH"
+        echo "Creating symlink to $REPO_PATH/public..."
+        ln -s "$REPO_PATH/public" "$PUBLIC_HTML"
+    else
+        echo "Creating symlink to $REPO_PATH/public..."
+        ln -s "$REPO_PATH/public" "$PUBLIC_HTML"
+    fi
 else
-    echo "Creating symlink to $REPO_PATH/public..."
-    ln -s "$REPO_PATH/public" "$PUBLIC_HTML"
+    echo "Skipping symlink since public path matches repo public directory directly."
 fi
 
 echo "✨ Deployment successfully completed!"
