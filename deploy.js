@@ -94,28 +94,26 @@ runCmd(`${phpCmd} artisan optimize`);
 runCmd(`${phpCmd} artisan storage:link --force`);
 
 // 6. Handle Symlink for public_html
-if (publicHtmlPath && publicHtmlPath !== publicFolder) {
-    console.log('\nSetting up public_html symlink...');
-    if (fs.existsSync(publicHtmlPath)) {
-        const stats = fs.lstatSync(publicHtmlPath);
-        if (stats.isSymbolicLink()) {
-            console.log('public_html is already a symlink.');
-        } else {
-            console.log(`Warning: ${publicHtmlPath} is a physical directory.`);
-            console.log('Backing up existing public_html to public_html_backup...');
-            
-            const backupPath = `${publicHtmlPath}_backup_${Date.now()}`;
-            fs.renameSync(publicHtmlPath, backupPath);
-            
-            console.log(`Creating symlink: ${publicHtmlPath} -> ${publicFolder}`);
-            fs.symlinkSync(publicFolder, publicHtmlPath);
-        }
+console.log('\nSetting up public_html symlink...');
+if (path.resolve(publicHtmlPath) === path.resolve(publicFolder)) {
+    console.log('Using direct document root (e.g. Cloud Panel). Skipping symlink creation.');
+} else if (fs.existsSync(publicHtmlPath)) {
+    const stats = fs.lstatSync(publicHtmlPath);
+    if (stats.isSymbolicLink()) {
+        console.log('public_html is already a symlink.');
     } else {
+        console.log(`Warning: ${publicHtmlPath} is a physical directory.`);
+        console.log('Backing up existing public_html to public_html_backup...');
+        
+        const backupPath = `${publicHtmlPath}_backup_${Date.now()}`;
+        fs.renameSync(publicHtmlPath, backupPath);
+        
         console.log(`Creating symlink: ${publicHtmlPath} -> ${publicFolder}`);
         fs.symlinkSync(publicFolder, publicHtmlPath);
     }
 } else {
-    console.log('\nSkipping symlink since public path matches repo public directory directly.');
+    console.log(`Creating symlink: ${publicHtmlPath} -> ${publicFolder}`);
+    fs.symlinkSync(publicFolder, publicHtmlPath);
 }
 
 console.log('\n✨ Deployment successfully completed!');
