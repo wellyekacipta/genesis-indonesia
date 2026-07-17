@@ -40,13 +40,13 @@
     <div class="bg-genesis-blue text-white text-[10px] md:text-xs py-2 border-b border-white/10">
         <div class="container mx-auto px-4 max-w-6xl flex justify-between items-center">
             <div class="flex space-x-4">
-                <span class="flex items-center"><i class="fa-solid fa-phone mr-1"></i> <span class="hidden sm:inline">(+62) 851-7963-7420</span></span>
-                <span class="flex items-center"><i class="fa-solid fa-envelope mr-1"></i> <span class="hidden sm:inline">info@genesisindonesia.or.id</span></span>
+                <span class="flex items-center"><i class="fa-solid fa-phone mr-1"></i> <span class="hidden sm:inline">(+62) 895-4142-77027</span></span>
+                <span class="flex items-center"><i class="fa-solid fa-envelope mr-1"></i> <span class="hidden sm:inline">genesisindonesia98@gmail.com</span></span>
             </div>
             <div class="flex space-x-3">
                 <a href="#" class="hover:text-genesis-pink transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="hover:text-genesis-pink transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://wa.me/6285179637420" class="hover:text-genesis-pink transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/genesis.id.official/" target="_blank" class="hover:text-genesis-pink transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/62895414277027" target="_blank" class="hover:text-genesis-pink transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
     </div>
