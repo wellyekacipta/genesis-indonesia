@@ -215,16 +215,16 @@
             <!-- Director Card -->
             <div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
                 <div class="relative w-32 h-32 mb-6 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-805 shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Director" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/director.jpg') }}" alt="Director" class="w-full h-full object-cover">
                 </div>
                 <span class="px-3 py-1 bg-genesis-pink/10 text-genesis-pink text-xs font-bold rounded-full mb-3 uppercase tracking-wider">
                     {{ app()->getLocale() == 'id' ? 'Direktur Utama' : 'Managing Director' }}
                 </span>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Dr. Sarah Wijaya, M.Sc.</h3>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Muhammad Ridwan, S.Ag.</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-xs px-4 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
-                        ? 'Pakar kurikulum internasional yang memimpin operasional dan strategi pengembangan lembaga.' 
-                        : 'International curriculum expert leading the operations and growth strategy of the institution.' 
+                        ? 'Direktur Utama Genesis Indonesia.' 
+                        : 'Managing Director of Genesis Indonesia.' 
                     }}
                 </p>
             </div>
