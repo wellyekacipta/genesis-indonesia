@@ -7,6 +7,7 @@ use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
 use Filament\Auth\Http\Responses\Contracts\LoginResponse;
 use Illuminate\Validation\ValidationException;
+use Filament\Notifications\Notification;
 
 class Login extends BaseLogin
 {
@@ -56,6 +57,12 @@ class Login extends BaseLogin
         if ($expected === null || $actual !== $expected) {
             $this->regenerateCaptcha();
             
+            Notification::make()
+                ->title('Jawaban Captcha Salah')
+                ->body('Hasil penjumlahan matematika tidak sesuai.')
+                ->danger()
+                ->send();
+
             throw ValidationException::withMessages([
                 'data.captcha' => 'Jawaban captcha salah. Silakan coba lagi.',
             ]);
@@ -67,7 +74,26 @@ class Login extends BaseLogin
             return $response;
         } catch (ValidationException $e) {
             $this->regenerateCaptcha();
+            
+            Notification::make()
+                ->title('Gagal Login')
+                ->body('Username atau password salah. Sedang menyiapkan server, silakan coba lagi.')
+                ->danger()
+                ->send();
+
             throw $e;
+        } catch (\Exception $e) {
+            $this->regenerateCaptcha();
+            
+            Notification::make()
+                ->title('Koneksi Gagal')
+                ->body('Sedang menyiapkan server, silakan hubungi administrator.')
+                ->danger()
+                ->send();
+
+            throw ValidationException::withMessages([
+                'data.email' => 'Sedang menyiapkan server. Silakan hubungi admin.',
+            ]);
         }
     }
 }
