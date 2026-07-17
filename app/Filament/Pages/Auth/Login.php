@@ -18,9 +18,8 @@ class Login extends BaseLogin
     {
         parent::mount();
         
-        if (blank(session('captcha_result'))) {
-            $this->regenerateCaptcha();
-        }
+        // Always regenerate captcha on page load/refresh
+        $this->regenerateCaptcha();
     }
 
     protected function regenerateCaptcha(): void
@@ -77,7 +76,7 @@ class Login extends BaseLogin
             
             Notification::make()
                 ->title('Gagal Login')
-                ->body('Username atau password salah. Sedang menyiapkan server, silakan coba lagi.')
+                ->body('Username atau password salah. Silakan coba lagi.')
                 ->danger()
                 ->send();
 
