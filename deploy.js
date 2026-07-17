@@ -94,7 +94,7 @@ runCmd(`${phpCmd} artisan optimize`);
 runCmd(`${phpCmd} artisan storage:link --force`);
 
 // 5c. Publish Livewire assets to disk to prevent Nginx 404 block
-runCmd(`${phpCmd} artisan livewire:publish --assets --force`);
+runCmd(`${phpCmd} artisan livewire:publish --assets`);
 
 // 6. Handle Symlink for public_html
 if (publicHtmlPath && publicHtmlPath !== publicFolder) {

@@ -66,7 +66,7 @@ $PHP_CMD artisan storage:link --force
 
 # 5c. Publish Livewire assets to disk to prevent Nginx 404 block
 echo "Publishing Livewire assets to public directory..."
-$PHP_CMD artisan livewire:publish --assets --force
+$PHP_CMD artisan livewire:publish --assets
 
 # 6. Set up the public_html symlink if applicable
 if [ "$PUBLIC_HTML" != "$REPO_PATH/public" ] && [ -n "$PUBLIC_HTML" ]; then
