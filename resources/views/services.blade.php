@@ -57,7 +57,7 @@
                             {{ app()->getLocale() == 'id' ? 'Portal Ujian Online Handal' : 'Reliable Online Exam Portal' }}
                         </div>
                     </div>
-                    <a href="https://wa.me/6285179637420?text=Halo%20Genesis%20Indonesia,%20saya%20tertarik%20mendaftar%20National%20Science%20Olympiad" 
+                    <a href="https://wa.me/62895414277027?text=Halo%20Genesis%20Indonesia%2C%20saya%20tertarik%20mendaftar%20National%20Science%20Olympiad" 
                        target="_blank" 
                        class="inline-flex items-center justify-center bg-genesis-pink hover:bg-genesis-pinkDark text-white font-bold px-8 py-3 rounded-xl transition shadow-lg active:scale-95">
                         {{ app()->getLocale() == 'id' ? 'Daftar Kompetisi' : 'Register Now' }}
@@ -106,7 +106,7 @@
                             {{ app()->getLocale() == 'id' ? 'Sesi Konsultasi Eksklusif' : 'Exclusive Consultation Session' }}
                         </div>
                     </div>
-                    <a href="https://wa.me/6285179637420?text=Halo%20Genesis%20Indonesia,%20saya%20tertarik%2520mengikuti%20Intensive%20Mentoring" 
+                    <a href="https://wa.me/62895414277027?text=Halo%20Genesis%20Indonesia%2C%20saya%20tertarik%20mengikuti%20Intensive%20Mentoring" 
                        target="_blank" 
                        class="inline-flex items-center justify-center bg-genesis-pink hover:bg-genesis-pinkDark text-white font-bold px-8 py-3 rounded-xl transition shadow-lg active:scale-95">
                         {{ app()->getLocale() == 'id' ? 'Hubungi Admin Bimbingan' : 'Contact Mentoring Team' }}
@@ -155,7 +155,7 @@
                             {{ app()->getLocale() == 'id' ? 'Pelatihan Adaptasi Budaya' : 'Cultural Adaptation Training' }}
                         </div>
                     </div>
-                    <a href="https://wa.me/6285179637420?text=Halo%20Genesis%20Indonesia,%20saya%20tertarik%20dengan%20program%20Global%20Delegation" 
+                    <a href="https://wa.me/62895414277027?text=Halo%20Genesis%20Indonesia%2C%20saya%20tertarik%20dengan%20program%20Global%20Delegation" 
                        target="_blank" 
                        class="inline-flex items-center justify-center bg-genesis-pink hover:bg-genesis-pinkDark text-white font-bold px-8 py-3 rounded-xl transition shadow-lg active:scale-95">
                         {{ app()->getLocale() == 'id' ? 'Konsultasi Delegasi' : 'Consult with Delegation Coordinator' }}
