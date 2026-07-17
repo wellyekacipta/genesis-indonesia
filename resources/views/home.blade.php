@@ -82,7 +82,7 @@
         <div class="flex flex-col lg:flex-row items-center gap-16">
             <div class="w-full lg:w-1/2 relative">
                 <div class="absolute inset-0 bg-genesis-pink rounded-[40px] transform rotate-3 scale-105 opacity-20"></div>
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Director" class="relative z-10 w-full h-[500px] object-cover rounded-[40px] shadow-2xl border-4 border-white dark:border-gray-800">
+                <img src="{{ asset('images/director.jpg') }}" alt="Director" class="relative z-10 w-full h-[500px] object-cover rounded-[40px] shadow-2xl border-4 border-white dark:border-gray-800">
             </div>
             <div class="w-full lg:w-1/2">
                 <div class="inline-block py-1 px-3 bg-genesis-pink/10 text-genesis-pink rounded-lg font-bold text-xs mb-6 uppercase tracking-widest">

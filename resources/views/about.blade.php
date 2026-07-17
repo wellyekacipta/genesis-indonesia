@@ -28,7 +28,7 @@
             <div class="lg:col-span-1">
                 <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-150 dark:border-gray-700 sticky top-24 text-center">
                     <div class="relative w-40 h-40 mx-auto mb-6 rounded-3xl overflow-hidden border-4 border-white dark:border-gray-700 shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Dr. Sarah Wijaya" class="w-full h-full object-cover">
+                        <img src="{{ asset('images/director.jpg') }}" alt="Dr. Sarah Wijaya" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white">Dr. Sarah Wijaya, M.Sc.</h3>
                     <p class="text-genesis-pink font-bold text-xs uppercase tracking-widest mt-1 mb-6">
