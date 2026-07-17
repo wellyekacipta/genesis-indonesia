@@ -46,7 +46,7 @@
             <div class="flex space-x-3">
                 <a href="#" class="hover:text-genesis-pink transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/genesis.id.official/" target="_blank" class="hover:text-genesis-pink transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://wa.me/62895414277027?text=Hallo%2C%20Selamat%20Datang%20di%20Genesis%20Indonesia.%20Ada%20yang%20bisa%20kami%20bantu%3F%20%F0%9F%98%8A" target="_blank" class="hover:text-genesis-pink transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://wa.me/62895414277027?text=Hallo%2C%20Selamat%20Datang%20di%20Genesis%20Indonesia.%20Ada%20yang%20bisa%20kami%20bantu%3F%20%F0%9F%98%8A%0A%0A_Layanan%20pesan%20ini%20dihasilkan%20dari%20website%3A%20genesisindonesia.com_" target="_blank" class="hover:text-genesis-pink transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
     </div>
