@@ -6,7 +6,12 @@
 <!-- Hero Section -->
 <header class="min-h-[85vh] flex items-center relative overflow-hidden pt-20 pb-32">
     <div class="absolute inset-0 z-0 bg-genesis-blue">
-        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('https://images.unsplash.com/photo-1523240715630-991cd2f70ac2?auto=format&fit=crop&w=1920&q=80')"></div>
+        <!-- Slide 1 -->
+        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('https://images.unsplash.com/photo-1523240715630-991cd2f70ac2?auto=format&fit=crop&w=1920&q=80')"></div>
+        <!-- Slide 2 -->
+        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1920&q=80')"></div>
+        <!-- Slide 3 -->
+        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1920&q=80')"></div>
         <!-- Shadow overlay to create depth and contrast, blending beautifully with dark mode -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-gray-50/90 dark:to-gray-900 pointer-events-none transition-colors duration-300"></div>
     </div>
@@ -424,4 +429,21 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        
+        setInterval(function() {
+            slides[currentSlide].classList.remove('opacity-100');
+            slides[currentSlide].classList.add('opacity-0');
+            
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            slides[currentSlide].classList.remove('opacity-0');
+            slides[currentSlide].classList.add('opacity-100');
+        }, 5000); // Ganti foto setiap 5 detik
+    });
+</script>
 @endsection
