@@ -93,27 +93,32 @@ runCmd(`${phpCmd} artisan optimize`);
 // 5b. Ensure storage symbolic link exists
 runCmd(`${phpCmd} artisan storage:link --force`);
 
+// 5c. Publish Livewire assets to disk to prevent Nginx 404 block
+runCmd(`${phpCmd} artisan livewire:publish --assets --force`);
+
 // 6. Handle Symlink for public_html
-console.log('\nSetting up public_html symlink...');
-if (path.resolve(publicHtmlPath) === path.resolve(publicFolder)) {
-    console.log('Using direct document root (e.g. Cloud Panel). Skipping symlink creation.');
-} else if (fs.existsSync(publicHtmlPath)) {
-    const stats = fs.lstatSync(publicHtmlPath);
-    if (stats.isSymbolicLink()) {
-        console.log('public_html is already a symlink.');
+if (publicHtmlPath && publicHtmlPath !== publicFolder) {
+    console.log('\nSetting up public_html symlink...');
+    if (fs.existsSync(publicHtmlPath)) {
+        const stats = fs.lstatSync(publicHtmlPath);
+        if (stats.isSymbolicLink()) {
+            console.log('public_html is already a symlink.');
+        } else {
+            console.log(`Warning: ${publicHtmlPath} is a physical directory.`);
+            console.log('Backing up existing public_html to public_html_backup...');
+            
+            const backupPath = `${publicHtmlPath}_backup_${Date.now()}`;
+            fs.renameSync(publicHtmlPath, backupPath);
+            
+            console.log(`Creating symlink: ${publicHtmlPath} -> ${publicFolder}`);
+            fs.symlinkSync(publicFolder, publicHtmlPath);
+        }
     } else {
-        console.log(`Warning: ${publicHtmlPath} is a physical directory.`);
-        console.log('Backing up existing public_html to public_html_backup...');
-        
-        const backupPath = `${publicHtmlPath}_backup_${Date.now()}`;
-        fs.renameSync(publicHtmlPath, backupPath);
-        
         console.log(`Creating symlink: ${publicHtmlPath} -> ${publicFolder}`);
         fs.symlinkSync(publicFolder, publicHtmlPath);
     }
 } else {
-    console.log(`Creating symlink: ${publicHtmlPath} -> ${publicFolder}`);
-    fs.symlinkSync(publicFolder, publicHtmlPath);
+    console.log('\nSkipping symlink since public path matches repo public directory directly.');
 }
 
 console.log('\n✨ Deployment successfully completed!');

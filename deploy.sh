@@ -64,22 +64,28 @@ $PHP_CMD artisan optimize
 echo "Recreating storage symbolic link..."
 $PHP_CMD artisan storage:link --force
 
-# 6. Set up the public_html symlink
-echo "Configuring public_html symlink..."
-if [ "$REPO_PATH/public" = "$PUBLIC_HTML" ]; then
-    echo "Using direct document root (e.g. Cloud Panel). Skipping symlink configuration."
-elif [ -L "$PUBLIC_HTML" ]; then
-    echo "public_html is already a symlink."
-elif [ -d "$PUBLIC_HTML" ]; then
-    echo "Warning: $PUBLIC_HTML is a physical directory."
-    BACKUP_PATH="${PUBLIC_HTML}_backup_$(date +%s)"
-    echo "Backing up existing directory to $BACKUP_PATH..."
-    mv "$PUBLIC_HTML" "$BACKUP_PATH"
-    echo "Creating symlink to $REPO_PATH/public..."
-    ln -s "$REPO_PATH/public" "$PUBLIC_HTML"
+# 5c. Publish Livewire assets to disk to prevent Nginx 404 block
+echo "Publishing Livewire assets to public directory..."
+$PHP_CMD artisan livewire:publish --assets --force
+
+# 6. Set up the public_html symlink if applicable
+if [ "$PUBLIC_HTML" != "$REPO_PATH/public" ] && [ -n "$PUBLIC_HTML" ]; then
+    echo "Configuring public_html symlink..."
+    if [ -L "$PUBLIC_HTML" ]; then
+        echo "public_html is already a symlink."
+    elif [ -d "$PUBLIC_HTML" ]; then
+        echo "Warning: $PUBLIC_HTML is a physical directory."
+        BACKUP_PATH="${PUBLIC_HTML}_backup_$(date +%s)"
+        echo "Backing up existing directory to $BACKUP_PATH..."
+        mv "$PUBLIC_HTML" "$BACKUP_PATH"
+        echo "Creating symlink to $REPO_PATH/public..."
+        ln -s "$REPO_PATH/public" "$PUBLIC_HTML"
+    else
+        echo "Creating symlink to $REPO_PATH/public..."
+        ln -s "$REPO_PATH/public" "$PUBLIC_HTML"
+    fi
 else
-    echo "Creating symlink to $REPO_PATH/public..."
-    ln -s "$REPO_PATH/public" "$PUBLIC_HTML"
+    echo "Skipping symlink since public path matches repo public directory directly."
 fi
 
 echo "✨ Deployment successfully completed!"
