@@ -71,7 +71,7 @@
                     <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'text-genesis-pink border-b-2 border-genesis-pink pb-1' : 'text-gray-600 dark:text-gray-300 hover:text-genesis-pink transition-colors' }}">
                         {{ app()->getLocale() == 'id' ? 'Beranda' : 'Home' }}
                     </a>
-                    <a href="{{ route('home') }}#profil" class="text-gray-600 dark:text-gray-300 hover:text-genesis-pink transition-colors">
+                    <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'text-genesis-pink border-b-2 border-genesis-pink pb-1' : 'text-gray-600 dark:text-gray-300 hover:text-genesis-pink transition-colors' }}">
                         {{ app()->getLocale() == 'id' ? 'Tentang Kami' : 'About Us' }}
                     </a>
                     <a href="{{ route('home') }}#akademik" class="text-gray-600 dark:text-gray-300 hover:text-genesis-pink transition-colors">
@@ -161,7 +161,7 @@
         <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 shadow-xl absolute w-full">
             <div class="flex flex-col px-6 py-4 space-y-4">
                 <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'text-genesis-pink font-bold py-2 border-b border-gray-50 dark:border-gray-700' : 'text-gray-600 dark:text-gray-300 font-semibold py-2 border-b border-gray-50 dark:border-gray-700' }}">{{ app()->getLocale() == 'id' ? 'Beranda' : 'Home' }}</a>
-                <a href="{{ route('home') }}#profil" class="text-gray-600 dark:text-gray-300 font-semibold py-2 border-b border-gray-50 dark:border-gray-700">{{ app()->getLocale() == 'id' ? 'Tentang Kami' : 'About Us' }}</a>
+                <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'text-genesis-pink font-bold py-2 border-b border-gray-50 dark:border-gray-700' : 'text-gray-600 dark:text-gray-300 font-semibold py-2 border-b border-gray-50 dark:border-gray-700' }}">{{ app()->getLocale() == 'id' ? 'Tentang Kami' : 'About Us' }}</a>
                 <a href="{{ route('home') }}#akademik" class="text-gray-600 dark:text-gray-300 font-semibold py-2 border-b border-gray-50 dark:border-gray-700">{{ app()->getLocale() == 'id' ? 'Program' : 'Programs' }}</a>
                 <a href="{{ route('articles.index') }}" class="{{ request()->routeIs('articles.*') ? 'text-genesis-pink font-bold py-2 border-b border-gray-50 dark:border-gray-700' : 'text-gray-600 dark:text-gray-300 font-semibold py-2 border-b border-gray-50 dark:border-gray-700' }}">{{ app()->getLocale() == 'id' ? 'Berita' : 'News' }}</a>
                 <a href="/admin" class="bg-genesis-pink text-white text-center font-bold py-3 rounded-xl shadow-lg mt-2">Login</a>
@@ -192,7 +192,7 @@
                 <div>
                     <h4 class="font-bold text-genesis-pink mb-8 uppercase tracking-widest text-sm">Navigasi Cepat</h4>
                     <ul class="space-y-4 text-sm text-gray-300">
-                        <li><a href="{{ route('home') }}#profil" class="hover:text-genesis-pink transition-colors">Tentang Kami</a></li>
+                        <li><a href="{{ route('about') }}" class="hover:text-genesis-pink transition-colors">Tentang Kami</a></li>
                         <li><a href="{{ route('home') }}#akademik" class="hover:text-genesis-pink transition-colors">Program Utama</a></li>
                         <li><a href="{{ route('articles.index') }}" class="hover:text-genesis-pink transition-colors">Berita Terkini</a></li>
                         <li><a href="/admin" class="hover:text-genesis-pink transition-colors">Portal Login</a></li>

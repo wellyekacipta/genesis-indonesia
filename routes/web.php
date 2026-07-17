@@ -20,3 +20,8 @@ Route::get('/lang/{locale}', function ($locale) {
 Route::get('/services', function () {
     return view('services');
 })->name('services');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+

@@ -100,7 +100,7 @@
                         : 'Welcome to Genesis Indonesia. We are committed to creating a transparent, professional, and high-quality competition platform for students across Indonesia to hone their best academic potential on the national and international stage.' 
                     }}
                 </p>
-                <a href="#" class="inline-flex items-center text-genesis-pink font-bold hover:underline group">
+                <a href="{{ route('about') }}" class="inline-flex items-center text-genesis-pink font-bold hover:underline group">
                     {{ app()->getLocale() == 'id' ? 'Selengkapnya tentang visi kami' : 'More about our vision' }}
                     <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
                 </a>
