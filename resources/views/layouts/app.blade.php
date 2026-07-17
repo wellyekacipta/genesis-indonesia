@@ -201,14 +201,14 @@
                 <div>
                     <h4 class="font-bold text-genesis-pink mb-8 uppercase tracking-widest text-sm">Hubungi Kami</h4>
                     <ul class="space-y-4 text-sm text-gray-300">
-                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-genesis-pink"></i> Jl. Pendidikan No. 88, Karawang, Jawa Barat, Indonesia</li>
-                        <li class="flex items-center"><i class="fa-solid fa-phone mr-3 text-genesis-pink"></i> (+62) 851 7963 7420</li>
-                        <li class="flex items-center"><i class="fa-solid fa-envelope mr-3 text-genesis-pink"></i> info@genesisindonesia.or.id</li>
+                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-genesis-pink"></i> Jl. Jaja Abdullah, Kelurahan Karawang Kulon. Cluster Kertabumi Blok A No. 2</li>
+                        <li class="flex items-start"><i class="fa-solid fa-phone mt-1 mr-3 text-genesis-pink"></i> <span>Admin 1: 0895414277027<br/>Admin 2: 087724191623</span></li>
+                        <li class="flex items-center"><i class="fa-solid fa-envelope mr-3 text-genesis-pink"></i> genesisindonesia98@gmail.com</li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-white/10 pt-12 text-center text-xs text-gray-400">
-                <p>&copy; {{ date('Y') }} Genesis Indonesia Education Centre. All Rights Reserved.</p>
+                <p>&copy; {{ date('Y') }} Genesis Indonesia Education Centre. All Rights Reserved. | Developed by Epilog Society</p>
             </div>
         </div>
     </footer>
