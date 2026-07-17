@@ -15,14 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Admin Genesis',
-            'email' => 'admin@genesisindonesia.com',
-            'password' => bcrypt('Masyaallah@98#'),
-        ]);
-
-        \App\Models\Article::factory(20)->create();
+        // Create Admin User directly (without factory to avoid Faker errors in production)
+        if (!User::where('email', 'admin@genesisindonesia.com')->exists()) {
+            User::create([
+                'name' => 'Admin Genesis',
+                'email' => 'admin@genesisindonesia.com',
+                'password' => bcrypt('Masyaallah@98#'),
+            ]);
+        }
     }
 }
