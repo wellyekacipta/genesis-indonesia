@@ -9,11 +9,9 @@
         <!-- Slide 1 -->
         <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('{{ asset('images/slide1.jpg') }}')"></div>
         <!-- Slide 2 -->
-        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('{{ asset('images/slide2.png') }}')"></div>
+        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('{{ asset('images/slide2.jpg') }}')"></div>
         <!-- Slide 3 -->
-        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('{{ asset('images/slide3.png') }}')"></div>
-        <!-- Slide 4 -->
-        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('{{ asset('images/slide4.png') }}')"></div>
+        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('{{ asset('images/slide3.jpg') }}')"></div>
         <!-- Shadow overlay to create depth and contrast, blending beautifully with dark mode -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-gray-50/90 dark:to-gray-900 pointer-events-none transition-colors duration-300"></div>
     </div>
