@@ -15,4 +15,13 @@ class HomeController extends Controller
 
         return view('home', compact('latestArticles'));
     }
+
+    public function competitions()
+    {
+        $competitions = \App\Models\Competition::where('is_active', true)
+                            ->latest()
+                            ->get();
+
+        return view('competitions.index', compact('competitions'));
+    }
 }

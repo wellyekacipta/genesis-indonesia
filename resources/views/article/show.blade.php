@@ -56,7 +56,7 @@
                         <!-- Prose Content (Using Tailwind Typography + custom overrides for dark mode) -->
                         <div class="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed
                                     prose-headings:text-gray-900 dark:prose-headings:text-white prose-headings:font-bold
-                                    prose-a:text-blue-600 dark:prose-a:text-blue-400 hover:prose-a:text-genesis-pink transition-colors underline
+                                    prose-a:text-blue-600 dark:prose-a:text-blue-400 hover:prose-a:text-genesis-pink transition-colors no-underline hover:underline
                                     prose-strong:text-gray-900 dark:prose-strong:text-white">
                             {!! $content !!}
                         </div>

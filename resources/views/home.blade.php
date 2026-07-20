@@ -30,7 +30,7 @@
             }}
         </p>
         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center">
-            <a href="#" class="bg-genesis-pink hover:bg-genesis-pinkDark text-white font-bold px-10 py-4 rounded-full transition shadow-2xl active:scale-95">
+            <a href="{{ route('competitions.index') }}" class="bg-genesis-pink hover:bg-genesis-pinkDark text-white font-bold px-10 py-4 rounded-full transition shadow-2xl active:scale-95">
                 {{ app()->getLocale() == 'id' ? 'Ikuti Kompetisi' : 'Join Competition' }}
             </a>
             <a href="#" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-10 py-4 rounded-full transition backdrop-blur-sm active:scale-95">

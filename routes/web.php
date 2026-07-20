@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/competitions', [HomeController::class, 'competitions'])->name('competitions.index');
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 Route::post('/articles/{slug}/comments', [ArticleController::class, 'storeComment'])->name('articles.comments.store');
