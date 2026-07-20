@@ -2,16 +2,24 @@
 
 header('Content-Type: text/plain');
 
-$link = '/home/genesisindonesia/htdocs/genesisindonesia.com/public/storage';
+$paths = [
+    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage/app/public',
+    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage/app',
+    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage',
+];
 
-if (is_link($link)) {
-    echo "public/storage is indeed a symbolic link!\n";
-    echo "Target: " . readlink($link) . "\n";
-} else {
-    echo "public/storage is NOT a symbolic link!\n";
-    if (file_exists($link)) {
-        echo "It is a regular directory/file.\n";
+foreach ($paths as $path) {
+    echo "Path: $path\n";
+    if (is_link($path)) {
+        echo "  - Is Symbolic Link: YA\n";
+        echo "  - Target: " . readlink($path) . "\n";
     } else {
-        echo "It does not exist.\n";
+        echo "  - Is Symbolic Link: TIDAK\n";
+        if (file_exists($path)) {
+            echo "  - Type: " . (is_dir($path) ? "Directory" : "File") . "\n";
+        } else {
+            echo "  - Exists: TIDAK\n";
+        }
     }
+    echo "\n";
 }
