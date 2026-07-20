@@ -2,34 +2,41 @@
 
 header('Content-Type: text/plain');
 
-echo "=== SERVER ENV DIAGNOSIS ===\n\n";
+echo "=== DIRECTORY PERMISSIONS DIAGNOSIS ===\n\n";
 
-$envPath = __DIR__ . '/../.env';
+$paths = [
+    '/home/genesisindonesia/htdocs/genesisindonesia.com/public',
+    '/home/genesisindonesia/htdocs/genesisindonesia.com/public/storage',
+    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage',
+    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage/app',
+    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage/app/public',
+    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage/app/public/articles',
+    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage/app/public/articles/pdfs',
+];
 
-if (file_exists($envPath)) {
-    echo ".env file found!\n";
-    $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    foreach ($lines as $line) {
-        // Skip comments
-        if (strpos(trim($line), '#') === 0) {
-            continue;
-        }
+foreach ($paths as $path) {
+    echo "Path: $path\n";
+    if (file_exists($path)) {
+        $perms = fileperms($path);
         
-        if (strpos($line, '=') !== false) {
-            list($key, $value) = explode('=', $line, 2);
-            $key = trim($key);
-            $value = trim($value);
-            
-            // Only output key variables we care about for security
-            if (in_array($key, ['APP_URL', 'APP_ENV', 'FILESYSTEM_DISK'])) {
-                echo "$key: $value\n";
-            }
-        }
+        // Convert to standard octal string
+        $octal = substr(sprintf('%o', $perms), -4);
+        
+        // Get owner & group info
+        $ownerInfo = posix_getpwuid(fileowner($path));
+        $groupInfo = posix_getgrgid(filegroup($path));
+        
+        echo "  - Exists: YA\n";
+        echo "  - Permissions: $octal\n";
+        echo "  - Owner: " . ($ownerInfo ? $ownerInfo['name'] : 'Unknown') . "\n";
+        echo "  - Group: " . ($groupInfo ? $groupInfo['name'] : 'Unknown') . "\n";
+        echo "  - Readable by PHP: " . (is_readable($path) ? 'YA' : 'TIDAK') . "\n";
+        echo "  - Writable by PHP: " . (is_writable($path) ? 'YA' : 'TIDAK') . "\n";
+    } else {
+        echo "  - Exists: TIDAK EXIST\n";
     }
-} else {
-    echo ".env file NOT found at $envPath!\n";
+    echo "\n";
 }
 
-echo "HTTP_HOST: " . $_SERVER['HTTP_HOST'] . "\n";
-echo "HTTPS Status: " . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'ON' : 'OFF') . "\n";
-echo "SERVER_PORT: " . $_SERVER['SERVER_PORT'] . "\n";
+echo "PHP Process User: " . posix_getpwuid(posix_geteuid())['name'] . "\n";
+echo "PHP Process Group: " . posix_getgrgid(posix_getegid())['name'] . "\n";
