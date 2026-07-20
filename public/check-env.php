@@ -4,12 +4,32 @@ header('Content-Type: text/plain');
 
 echo "=== SERVER ENV DIAGNOSIS ===\n\n";
 
-echo "1. APP_URL from .env: " . env('APP_URL') . "\n";
-echo "2. config('app.url'): " . config('app.url') . "\n";
-echo "3. request()->root(): " . (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . "\n";
-echo "4. Public Storage URL check:\n";
-echo "   --> " . asset('storage/test.pdf') . "\n";
+$envPath = __DIR__ . '/../.env';
 
-echo "\n============================\n";
-echo "Jika nomor 1 dan 2 bernilai 'http://localhost', maka ini adalah penyebab UTAMA bug ini!\n";
-echo "Laravel akan salah menghasilkan tautan gambar & PDF menjadi 'http://localhost/storage/...' sehingga orang lain tidak bisa mengaksesnya.\n";
+if (file_exists($envPath)) {
+    echo ".env file found!\n";
+    $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        // Skip comments
+        if (strpos(trim($line), '#') === 0) {
+            continue;
+        }
+        
+        if (strpos($line, '=') !== false) {
+            list($key, $value) = explode('=', $line, 2);
+            $key = trim($key);
+            $value = trim($value);
+            
+            // Only output key variables we care about for security
+            if (in_array($key, ['APP_URL', 'APP_ENV', 'FILESYSTEM_DISK'])) {
+                echo "$key: $value\n";
+            }
+        }
+    }
+} else {
+    echo ".env file NOT found at $envPath!\n";
+}
+
+echo "HTTP_HOST: " . $_SERVER['HTTP_HOST'] . "\n";
+echo "HTTPS Status: " . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'ON' : 'OFF') . "\n";
+echo "SERVER_PORT: " . $_SERVER['SERVER_PORT'] . "\n";
