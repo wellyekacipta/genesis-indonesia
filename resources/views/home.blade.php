@@ -7,11 +7,13 @@
 <header class="min-h-[85vh] flex items-center relative overflow-hidden pt-20 pb-32">
     <div class="absolute inset-0 z-0 bg-genesis-blue">
         <!-- Slide 1 -->
-        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('https://images.unsplash.com/photo-1523240715630-991cd2f70ac2?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('{{ asset('images/slide1.jpg') }}')"></div>
         <!-- Slide 2 -->
-        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('{{ asset('images/slide2.png') }}')"></div>
         <!-- Slide 3 -->
-        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('{{ asset('images/slide3.png') }}')"></div>
+        <!-- Slide 4 -->
+        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0 hero-slide" style="background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(236, 72, 153, 0.2)), url('{{ asset('images/slide4.png') }}')"></div>
         <!-- Shadow overlay to create depth and contrast, blending beautifully with dark mode -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-gray-50/90 dark:to-gray-900 pointer-events-none transition-colors duration-300"></div>
     </div>
@@ -193,29 +195,12 @@
             </p>
         </div>
 
-        <!-- Tier 1: Patron & Director -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto mb-16">
-            <!-- Patron Card -->
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
-                <div class="relative w-32 h-32 mb-6 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-805 shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" alt="Patron" class="w-full h-full object-cover">
-                </div>
-                <span class="px-3 py-1 bg-genesis-blue/10 text-genesis-blue dark:bg-blue-900/30 dark:text-blue-400 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">
-                    {{ app()->getLocale() == 'id' ? 'Pelindung' : 'Patron' }}
-                </span>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Prof. Dr. Budi Santoso, M.Pd.</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-xs px-4 leading-relaxed">
-                    {{ app()->getLocale() == 'id' 
-                        ? 'Guru Besar Teknologi Pendidikan yang mengawasi mutu akademik program Genesis Indonesia.' 
-                        : 'Professor of Educational Technology overseeing the academic quality of Genesis Indonesia programs.' 
-                    }}
-                </p>
-            </div>
-
+        <!-- Tier 1: Director Card centered -->
+        <div class="flex justify-center mb-16">
             <!-- Director Card -->
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
+            <a href="{{ route('team.show', 'muhammad-ridwan') }}" class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group max-w-sm">
                 <div class="relative w-32 h-32 mb-6 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-805 shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <img src="{{ asset('images/director.jpg') }}" alt="Director" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/director_struct.png') }}" alt="Director" class="w-full h-full object-cover">
                 </div>
                 <span class="px-3 py-1 bg-genesis-pink/10 text-genesis-pink text-xs font-bold rounded-full mb-3 uppercase tracking-wider">
                     {{ app()->getLocale() == 'id' ? 'Direktur Utama' : 'Managing Director' }}
@@ -227,98 +212,98 @@
                         : 'Managing Director of Genesis Indonesia.' 
                     }}
                 </p>
-            </div>
+            </a>
         </div>
 
-        <!-- Tier 2: Secretary & Treasurer -->
+        <!-- Tier 2: General Affair & Finance -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto mb-16">
-            <!-- Secretary Card -->
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
+            <!-- Operational -> Krisna Adi Putra, S.T. -->
+            <a href="{{ route('team.show', 'krisna-adi-putra') }}" class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
                 <div class="relative w-28 h-28 mb-5 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-805 shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Secretary" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/operational_struct.png') }}" alt="Operations" class="w-full h-full object-cover">
                 </div>
                 <span class="px-3 py-1 bg-gray-200/60 text-gray-700 dark:bg-gray-800 dark:text-gray-300 text-xs font-semibold rounded-full mb-3 uppercase tracking-wider">
-                    {{ app()->getLocale() == 'id' ? 'Sekretaris' : 'Secretary' }}
+                    {{ app()->getLocale() == 'id' ? 'Operasional: General Affair' : 'Operations: General Affair' }}
                 </span>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Ahmad Fauzi, S.E.</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Krisna Adi Putra, S.T.</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-xs px-4 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
-                        ? 'Mengelola administrasi, pendaftaran, dan hubungan kelembagaan sekolah mitra.' 
-                        : 'Manages administration, registration, and institutional relations with partner schools.' 
+                        ? 'Mengelola administrasi operasional, logistik lapangan, dan sarana prasarana lembaga.' 
+                        : 'Manages operational administration, field logistics, and institutional infrastructure.' 
                     }}
                 </p>
-            </div>
+            </a>
 
-            <!-- Treasurer Card -->
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
+            <!-- Treasurer Card -> Dinda, S.Pd. -->
+            <a href="{{ route('team.show', 'dinda') }}" class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
                 <div class="relative w-28 h-28 mb-5 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-805 shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" alt="Treasurer" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/finance_struct.png') }}" alt="Treasurer" class="w-full h-full object-cover">
                 </div>
                 <span class="px-3 py-1 bg-gray-200/60 text-gray-700 dark:bg-gray-800 dark:text-gray-300 text-xs font-semibold rounded-full mb-3 uppercase tracking-wider">
-                    {{ app()->getLocale() == 'id' ? 'Bendahara' : 'Treasurer' }}
+                    {{ app()->getLocale() == 'id' ? 'Keuangan: Accounting Finance' : 'Finance: Accounting & Finance' }}
                 </span>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Maria Ulfa, S.Ak.</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Dinda, S.Pd.</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-xs px-4 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
-                        ? 'Mengawasi pengelolaan anggaran, biaya operasional, dan transparansi keuangan program.' 
-                        : 'Oversees budget management, operating costs, and financial transparency of programs.' 
+                        ? 'Mengelola transparansi arus kas anggaran keuangan, invoice, dan administrasi transaksi.' 
+                        : 'Manages cash flow transparency of financial budgets, invoices, and transaction records.' 
                     }}
                 </p>
-            </div>
+            </a>
         </div>
 
-        <!-- Tier 3: Division Heads -->
+        <!-- Tier 3: Division Heads -> Academic, Tech, Marketing -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Head of Olympiad -->
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-6 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
+            <!-- Academic -> Didin Rasidin, A.Md., Kom. -->
+            <a href="{{ route('team.show', 'didin-rasidin') }}" class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-6 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
                 <div class="relative w-24 h-24 mb-4 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-805 shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" alt="Olympiad Head" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/academic_struct.png') }}" alt="Curriculum" class="w-full h-full object-cover">
                 </div>
                 <span class="px-2.5 py-0.5 bg-genesis-blue/5 text-genesis-blue dark:bg-blue-950/20 dark:text-blue-400 text-[10px] font-bold rounded-full mb-3 uppercase tracking-wider">
-                    {{ app()->getLocale() == 'id' ? 'Kabid Kompetisi Olimpiade' : 'Head of Olympiad' }}
+                    {{ app()->getLocale() == 'id' ? 'Akademik: Tim Kurikulum' : 'Academic: Curriculum Team' }}
                 </span>
-                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Rian Hidayat, M.Si.</h3>
+                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Didin Rasidin, A.Md., Kom.</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-[11px] px-2 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
-                        ? 'Bertanggung jawab atas penyusunan soal, validitas ilmiah, dan pelaksanaan sistem ujian.' 
-                        : 'Responsible for question compilation, scientific validity, and exam system execution.' 
+                        ? 'Mengembangkan materi kurikulum sains, validasi bank soal, serta evaluasi hasil belajar.' 
+                        : 'Develops science curriculum materials, validates question banks, and learning outcomes.' 
                     }}
                 </p>
-            </div>
+            </a>
 
-            <!-- Head of Mentoring -->
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-6 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
+            <!-- Tech -> Welly Eka Cipta, S.Kom. -->
+            <a href="{{ route('team.show', 'welly-eka-cipta') }}" class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-6 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
                 <div class="relative w-24 h-24 mb-4 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-805 shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Mentoring Head" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/tech_struct.png') }}" alt="Tech" class="w-full h-full object-cover">
                 </div>
                 <span class="px-2.5 py-0.5 bg-genesis-pink/5 text-genesis-pink text-[10px] font-bold rounded-full mb-3 uppercase tracking-wider">
-                    {{ app()->getLocale() == 'id' ? 'Kabid Pelatihan & Mentoring' : 'Head of Mentoring' }}
+                    {{ app()->getLocale() == 'id' ? 'Teknologi: Programmer UI/UX' : 'Technology: UI/UX Programmer' }}
                 </span>
-                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Kartika Putri, M.Pd.</h3>
+                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Welly Eka Cipta, S.Kom.</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-[11px] px-2 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
-                        ? 'Mengelola kurikulum bimbingan, rekrutmen tutor ahli, dan evaluasi hasil belajar siswa.' 
-                        : 'Manages mentoring curriculum, expert tutor recruitment, and student learning evaluation.' 
+                        ? 'Merancang platform ujian online terintegrasi, pemeliharaan server, dan manajemen UI/UX.' 
+                        : 'Designs integrated online exam platforms, server maintenance, and UI/UX design.' 
                     }}
                 </p>
-            </div>
+            </a>
 
-            <!-- Head of International Relations -->
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-6 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
+            <!-- Marketing -> Muhammad Ilham, S.H. -->
+            <a href="{{ route('team.show', 'muhammad-ilham') }}" class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-6 border border-transparent hover:border-genesis-pink/30 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
                 <div class="relative w-24 h-24 mb-4 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-805 shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" alt="International Relations Head" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/marketing_struct.png') }}" alt="Marketing" class="w-full h-full object-cover">
                 </div>
                 <span class="px-2.5 py-0.5 bg-genesis-blue/5 text-genesis-blue dark:bg-blue-950/20 dark:text-blue-400 text-[10px] font-bold rounded-full mb-3 uppercase tracking-wider">
-                    {{ app()->getLocale() == 'id' ? 'Kabid Hubungan Internasional' : 'Head of Int. Relations' }}
+                    {{ app()->getLocale() == 'id' ? 'Pemasaran & Kemitraan: Digital Marketing' : 'Marketing & Partnership: Digital Marketing' }}
                 </span>
-                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Dewa Gede, Ph.D.</h3>
+                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Muhammad Ilham, S.H.</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-[11px] px-2 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
-                        ? 'Menghubungkan program delegasi Genesis Indonesia dengan kompetisi dan universitas tingkat global.' 
-                        : 'Connects Genesis Indonesia delegation programs with global level competitions and universities.' 
+                        ? 'Memimpin digital marketing, branding media sosial, dan kerja sama kemitraan institusi luar.' 
+                        : 'Leads digital marketing, social media branding, and partnership cooperation.' 
                     }}
                 </p>
-            </div>
+            </a>
         </div>
     </div>
 </section>
