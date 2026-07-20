@@ -2,24 +2,22 @@
 
 header('Content-Type: text/plain');
 
-$paths = [
-    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage/app/public',
-    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage/app',
-    '/home/genesisindonesia/htdocs/genesisindonesia.com/storage',
-];
+$dir = '/home/genesisindonesia/htdocs/genesisindonesia.com/storage/app/public';
 
-foreach ($paths as $path) {
-    echo "Path: $path\n";
-    if (is_link($path)) {
-        echo "  - Is Symbolic Link: YA\n";
-        echo "  - Target: " . readlink($path) . "\n";
-    } else {
-        echo "  - Is Symbolic Link: TIDAK\n";
-        if (file_exists($path)) {
-            echo "  - Type: " . (is_dir($path) ? "Directory" : "File") . "\n";
-        } else {
-            echo "  - Exists: TIDAK\n";
+if (is_dir($dir)) {
+    $items = scandir($dir);
+    echo "Files inside storage/app/public:\n";
+    foreach ($items as $item) {
+        if ($item != '.' && $item != '..') {
+            $path = $dir . '/' . $item;
+            echo "- $item\n";
+            if (is_link($path)) {
+                echo "  --> IS SYMLINK! Points to: " . readlink($path) . "\n";
+            } else {
+                echo "  --> Is regular " . (is_dir($path) ? "Directory" : "File") . "\n";
+            }
         }
     }
-    echo "\n";
+} else {
+    echo "Directory does not exist!\n";
 }
