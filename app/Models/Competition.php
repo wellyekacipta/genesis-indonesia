@@ -16,4 +16,18 @@ class Competition extends Model
         'description_en',
         'is_active',
     ];
+
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image) {
+            return null;
+        }
+
+        if (\Illuminate\Support\Str::startsWith($this->image, ['http://', 'https://'])) {
+            return $this->image;
+        }
+
+        $cleanPath = preg_replace('/^(public\/|storage\/)/', '', $this->image);
+        return asset('storage/' . ltrim($cleanPath, '/'));
+    }
 }

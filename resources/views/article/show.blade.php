@@ -25,9 +25,9 @@
                 <!-- Article Card -->
                 <article class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden transition-all-300">
                     <!-- Article Image -->
-                    @if($article->image)
+                    @if($article->image_url)
                         <div class="w-full h-64 md:h-[450px] relative">
-                            <img src="{{ Storage::url($article->image) }}" alt="{{ $title }}" class="w-full h-full object-cover">
+                            <img src="{{ $article->image_url }}" alt="{{ $title }}" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                         </div>
                     @endif
@@ -56,7 +56,7 @@
                         <!-- Prose Content (Using Tailwind Typography + custom overrides for dark mode) -->
                         <div class="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed
                                     prose-headings:text-gray-900 dark:prose-headings:text-white prose-headings:font-bold
-                                    prose-a:text-blue-600 dark:prose-a:text-blue-400 hover:prose-a:text-genesis-pink transition-colors no-underline hover:underline
+                                    prose-a:text-blue-600 dark:prose-a:text-blue-400 hover:prose-a:text-genesis-pink transition-colors prose-a:no-underline
                                     prose-strong:text-gray-900 dark:prose-strong:text-white">
                             {!! $content !!}
                         </div>
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-shrink-0">
-                                    <a href="{{ Storage::url($article->pdf_file) }}" target="_blank" download class="w-full sm:w-auto bg-gradient-to-r from-genesis-pink to-genesis-pinkDark hover:from-genesis-pinkDark hover:to-genesis-pink text-white text-xs font-bold px-6 py-3.5 rounded-full shadow-lg transition duration-200 transform active:scale-95 flex items-center justify-center cursor-pointer">
+                                    <a href="{{ $article->pdf_file_url }}" target="_blank" download class="w-full sm:w-auto bg-gradient-to-r from-genesis-pink to-genesis-pinkDark hover:from-genesis-pinkDark hover:to-genesis-pink text-white text-xs font-bold px-6 py-3.5 rounded-full shadow-lg transition duration-200 transform active:scale-95 flex items-center justify-center cursor-pointer">
                                         <i class="fa-solid fa-cloud-arrow-down mr-2 text-sm animate-bounce"></i>
                                         {{ app()->getLocale() == 'id' ? 'UNDUH LAMPIRAN' : 'DOWNLOAD ATTACHMENT' }}
                                     </a>
@@ -256,8 +256,8 @@
                             <div class="flex items-center space-x-4 group">
                                 <!-- Thumbnail -->
                                 <div class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-700 flex-shrink-0">
-                                    @if($popArticle->image)
-                                        <img src="{{ Storage::url($popArticle->image) }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="{{ app()->getLocale() == 'id' ? $popArticle->title_id : $popArticle->title_en }}">
+                                    @if($popArticle->image_url)
+                                        <img src="{{ $popArticle->image_url }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="{{ app()->getLocale() == 'id' ? $popArticle->title_id : $popArticle->title_en }}">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center bg-genesis-blue/5 text-genesis-blue/30 dark:bg-gray-700 dark:text-gray-600">
                                             <i class="fa-solid fa-newspaper text-xl"></i>

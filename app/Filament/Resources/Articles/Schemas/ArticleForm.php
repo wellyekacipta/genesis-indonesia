@@ -28,19 +28,28 @@ class ArticleForm
                     ->dehydrated()
                     ->required(),
                 RichEditor::make('content_id')
+                    ->fileAttachmentsDisk('public')
+                    ->fileAttachmentsDirectory('articles/attachments')
+                    ->fileAttachmentsVisibility('public')
                     ->columnSpanFull(),
                 RichEditor::make('content_en')
+                    ->fileAttachmentsDisk('public')
+                    ->fileAttachmentsDirectory('articles/attachments')
+                    ->fileAttachmentsVisibility('public')
                     ->columnSpanFull(),
                 FileUpload::make('image')
                     ->image()
-                    ->disk('public'),
+                    ->disk('public')
+                    ->directory('articles/images')
+                    ->visibility('public'),
                 FileUpload::make('pdf_file')
                     ->label(fn () => app()->getLocale() == 'id' ? 'File PDF (Lampiran)' : 'PDF File (Attachment)')
                     ->acceptedFileTypes(['application/pdf'])
                     ->directory('articles/pdfs')
                     ->preserveFilenames()
                     ->maxSize(10240) // 10MB
-                    ->disk('public'),
+                    ->disk('public')
+                    ->visibility('public'),
                 TextInput::make('seo_title'),
                 Textarea::make('seo_description')
                     ->columnSpanFull(),

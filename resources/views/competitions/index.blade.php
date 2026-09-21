@@ -46,7 +46,7 @@
                     <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full group">
                         <!-- Image Container (Square 1:1 ratio) -->
                         <div class="relative w-full aspect-square bg-gray-100 dark:bg-gray-700 overflow-hidden flex-shrink-0">
-                            <img src="{{ Storage::url($comp->image) }}" alt="{{ app()->getLocale() == 'id' ? $comp->title_id : $comp->title_en }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="{{ $comp->image_url }}" alt="{{ app()->getLocale() == 'id' ? $comp->title_id : $comp->title_en }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                 <span class="text-white text-xs font-bold uppercase tracking-wider bg-genesis-pink px-4 py-2 rounded-full shadow-lg">
                                     {{ app()->getLocale() == 'id' ? 'Pilih Kompetisi' : 'Select Competition' }}

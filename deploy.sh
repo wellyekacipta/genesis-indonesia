@@ -60,11 +60,19 @@ $PHP_CMD artisan migrate --force
 echo "Optimizing Laravel configuration and routes..."
 $PHP_CMD artisan optimize
 
-# 5b. Ensure storage symbolic link exists
+# 5b. Fix and sync storage files from private to public
+echo "Syncing storage files to public disk..."
+$PHP_CMD artisan storage:fix-private
+
+# 5c. Clear log files to prevent disk space exhaustion
+echo "Clearing log files to free disk space..."
+$PHP_CMD artisan log:clear || true
+
+# 5d. Ensure storage symbolic link exists
 echo "Recreating storage symbolic link..."
 $PHP_CMD artisan storage:link --force
 
-# 5c. Publish Livewire assets to disk to prevent Nginx 404 block
+# 5e. Publish Livewire assets to disk to prevent Nginx 404 block
 echo "Publishing Livewire assets to public directory..."
 $PHP_CMD artisan livewire:publish --assets
 

@@ -329,8 +329,8 @@
             @foreach($latestArticles as $article)
                 <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 hover:-translate-y-2 transition-transform duration-300">
                     <div class="relative h-56 bg-gray-200 dark:bg-gray-700">
-                        @if($article->image)
-                            <img src="{{ Storage::url($article->image) }}" class="w-full h-full object-cover" alt="{{ app()->getLocale() == 'id' ? $article->title_id : $article->title_en }}">
+                        @if($article->image_url)
+                            <img src="{{ $article->image_url }}" class="w-full h-full object-cover" alt="{{ app()->getLocale() == 'id' ? $article->title_id : $article->title_en }}">
                         @else
                             <div class="w-full h-full flex items-center justify-center bg-genesis-blue/5 text-genesis-blue/30 dark:bg-gray-700 dark:text-gray-600">
                                 <i class="fa-solid fa-newspaper text-5xl"></i>

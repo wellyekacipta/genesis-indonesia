@@ -21,6 +21,8 @@ class CompetitionForm
                 FileUpload::make('image')
                     ->image()
                     ->disk('public')
+                    ->directory('competitions/images')
+                    ->visibility('public')
                     ->imageCropAspectRatio('1:1')
                     ->imageResizeTargetWidth('1000')
                     ->imageResizeTargetHeight('1000')
