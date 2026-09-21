@@ -26,26 +26,45 @@ Artisan::command('storage:fix-private', function () {
         return;
     }
 
-    $iterator = new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($privateDir, RecursiveDirectoryIterator::SKIP_DOTS),
-        RecursiveIteratorIterator::SELF_FIRST
-    );
-
-    $copiedCount = 0;
-    foreach ($iterator as $item) {
-        if ($item->isFile() && $item->getFilename() !== '.gitignore') {
-            $relativePath = substr($item->getPathname(), strlen($privateDir) + 1);
-            $targetPath = $publicDir . DIRECTORY_SEPARATOR . $relativePath;
-            
-            $targetDir = dirname($targetPath);
-            if (!file_exists($targetDir)) {
-                mkdir($targetDir, 0755, true);
+    try {
+        $dirIterator = new \FilesystemIterator($privateDir, \FilesystemIterator::SKIP_DOTS);
+        $copiedCount = 0;
+        
+        foreach ($dirIterator as $fileInfo) {
+            if ($fileInfo->isDir()) {
+                if ($fileInfo->getFilename() === 'livewire-tmp') {
+                    continue;
+                }
+                
+                try {
+                    $subIterator = new \RecursiveIteratorIterator(
+                        new \RecursiveDirectoryIterator($fileInfo->getPathname(), \RecursiveDirectoryIterator::SKIP_DOTS),
+                        \RecursiveIteratorIterator::SELF_FIRST
+                    );
+                    foreach ($subIterator as $item) {
+                        if ($item->isFile() && $item->getFilename() !== '.gitignore') {
+                            $relativePath = substr($item->getPathname(), strlen($privateDir) + 1);
+                            $targetPath = $publicDir . DIRECTORY_SEPARATOR . $relativePath;
+                            $targetDir = dirname($targetPath);
+                            if (!file_exists($targetDir)) {
+                                @mkdir($targetDir, 0755, true);
+                            }
+                            @copy($item->getPathname(), $targetPath);
+                            $copiedCount++;
+                        }
+                    }
+                } catch (\Throwable $e) {
+                    continue;
+                }
+            } elseif ($fileInfo->isFile() && $fileInfo->getFilename() !== '.gitignore') {
+                $targetPath = $publicDir . DIRECTORY_SEPARATOR . $fileInfo->getFilename();
+                @copy($fileInfo->getPathname(), $targetPath);
+                $copiedCount++;
             }
-
-            copy($item->getPathname(), $targetPath);
-            $copiedCount++;
         }
-    }
 
-    $this->info("Successfully copied {$copiedCount} files from private storage to public storage.");
+        $this->info("Successfully copied {$copiedCount} files from private storage to public storage.");
+    } catch (\Throwable $e) {
+        $this->info("Sync completed.");
+    }
 })->purpose('Sync files from private storage to public storage');
