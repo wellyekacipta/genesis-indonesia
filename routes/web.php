@@ -85,3 +85,28 @@ Route::get('/team/{slug}', function ($slug) {
     return view('team.show', ['member' => $team[$slug]]);
 })->name('team.show');
 
+// Fallback route to guarantee storage files (photos, PDFs, attachments) are served cleanly
+Route::get('/storage/{path}', function ($path) {
+    $path = ltrim($path, '/');
+    
+    // Check in storage/app/public/
+    $publicPath = storage_path('app/public/' . $path);
+    if (file_exists($publicPath) && !is_dir($publicPath)) {
+        return response()->file($publicPath);
+    }
+
+    // Check in storage/app/private/
+    $privatePath = storage_path('app/private/' . $path);
+    if (file_exists($privatePath) && !is_dir($privatePath)) {
+        return response()->file($privatePath);
+    }
+
+    // Check directly in storage/app/
+    $appPath = storage_path('app/' . $path);
+    if (file_exists($appPath) && !is_dir($appPath)) {
+        return response()->file($appPath);
+    }
+
+    abort(404);
+})->where('path', '.*')->name('storage.serve');
+
