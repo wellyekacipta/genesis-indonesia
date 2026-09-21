@@ -90,10 +90,16 @@ runCmd(`${phpCmd} artisan migrate --force`);
 // 5. Clear and optimize Laravel caches
 runCmd(`${phpCmd} artisan optimize`);
 
-// 5b. Ensure storage symbolic link exists
+// 5b. Sync storage files from private to public
+runCmd(`${phpCmd} artisan storage:fix-private`);
+
+// 5c. Clear log files to prevent disk space exhaustion
+runCmd(`${phpCmd} artisan log:clear`);
+
+// 5d. Ensure storage symbolic link exists
 runCmd(`${phpCmd} artisan storage:link --force`);
 
-// 5c. Publish Livewire assets to disk to prevent Nginx 404 block
+// 5e. Publish Livewire assets to disk to prevent Nginx 404 block
 runCmd(`${phpCmd} artisan livewire:publish --assets`);
 
 // 6. Handle Symlink for public_html
