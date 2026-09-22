@@ -85,6 +85,53 @@ Route::get('/team/{slug}', function ($slug) {
     return view('team.show', ['member' => $team[$slug]]);
 })->name('team.show');
 
+// One-click route to fix all storage file/folder permissions via PHP web process
+Route::get('/fix-storage-permissions', function () {
+    $dirs = [
+        storage_path(),
+        storage_path('app'),
+        storage_path('app/public'),
+        public_path('storage'),
+    ];
+
+    $countFiles = 0;
+    $countDirs = 0;
+
+    $fixPath = function ($path) use (&$fixPath, &$countFiles, &$countDirs) {
+        if (!file_exists($path)) return;
+        if (is_dir($path)) {
+            @chmod($path, 0755);
+            $countDirs++;
+            $items = @scandir($path) ?: [];
+            foreach ($items as $item) {
+                if ($item === '.' || $item === '..') continue;
+                $fixPath($path . '/' . $item);
+            }
+        } else {
+            @chmod($path, 0644);
+            $countFiles++;
+        }
+    };
+
+    foreach ($dirs as $dir) {
+        $fixPath($dir);
+    }
+
+    // Ensure symbolic link is created if missing
+    try {
+        if (!file_exists(public_path('storage'))) {
+            @app('files')->link(storage_path('app/public'), public_path('storage'));
+        }
+    } catch (\Throwable $e) {}
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Permissions fixed successfully by PHP web process!',
+        'directories_updated' => $countDirs,
+        'files_updated' => $countFiles,
+    ]);
+});
+
 // Fallback route to guarantee storage files (photos, PDFs, attachments) are served cleanly
 Route::get('/storage/{path}', function ($path) {
     $path = ltrim($path, '/');
@@ -92,18 +139,21 @@ Route::get('/storage/{path}', function ($path) {
     // Check in storage/app/public/
     $publicPath = storage_path('app/public/' . $path);
     if (file_exists($publicPath) && !is_dir($publicPath)) {
+        @chmod($publicPath, 0644);
         return response()->file($publicPath);
     }
 
     // Check in storage/app/private/
     $privatePath = storage_path('app/private/' . $path);
     if (file_exists($privatePath) && !is_dir($privatePath)) {
+        @chmod($privatePath, 0644);
         return response()->file($privatePath);
     }
 
     // Check directly in storage/app/
     $appPath = storage_path('app/' . $path);
     if (file_exists($appPath) && !is_dir($appPath)) {
+        @chmod($appPath, 0644);
         return response()->file($appPath);
     }
 

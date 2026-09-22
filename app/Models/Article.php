@@ -52,12 +52,15 @@ class Article extends Model
         }
 
         if (file_exists($sourcePath) && !is_dir($sourcePath)) {
+            @chmod($sourcePath, 0644);
             $targetPath = public_path('storage/' . $cleanPath);
             $targetDir = dirname($targetPath);
             if (!file_exists($targetDir)) {
                 @mkdir($targetDir, 0755, true);
             }
+            @chmod($targetDir, 0755);
             @copy($sourcePath, $targetPath);
+            @chmod($targetPath, 0644);
         }
     }
 
