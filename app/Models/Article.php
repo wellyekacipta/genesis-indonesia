@@ -45,20 +45,26 @@ class Article extends Model
         }
 
         $cleanPath = preg_replace('/^(public\/|storage\/)/', '', $path);
-        $sourcePath = storage_path('app/public/' . $cleanPath);
+        $targetPath = public_path('storage/' . $cleanPath);
+        $targetDir = dirname($targetPath);
 
+        if (!file_exists($targetDir)) {
+            @mkdir($targetDir, 0755, true);
+        }
+        @chmod($targetDir, 0755);
+
+        if (file_exists($targetPath) && !is_dir($targetPath)) {
+            @chmod($targetPath, 0644);
+            return;
+        }
+
+        $sourcePath = storage_path('app/public/' . $cleanPath);
         if (!file_exists($sourcePath)) {
             $sourcePath = storage_path('app/private/' . $cleanPath);
         }
 
         if (file_exists($sourcePath) && !is_dir($sourcePath)) {
             @chmod($sourcePath, 0644);
-            $targetPath = public_path('storage/' . $cleanPath);
-            $targetDir = dirname($targetPath);
-            if (!file_exists($targetDir)) {
-                @mkdir($targetDir, 0755, true);
-            }
-            @chmod($targetDir, 0755);
             @copy($sourcePath, $targetPath);
             @chmod($targetPath, 0644);
         }
