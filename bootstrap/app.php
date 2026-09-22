@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(append: [
             \App\Http\Middleware\SetLocale::class,
+            \App\Http\Middleware\TrackVisitorMiddleware::class,
         ]);
 
         // Trust all proxies so Laravel correctly detects HTTPS from Nginx/CloudPanel reverse proxy

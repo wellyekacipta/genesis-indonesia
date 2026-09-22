@@ -5,15 +5,19 @@
 @section('content')
 <!-- Header Banner -->
 <section class="relative bg-gradient-to-r from-genesis-blue via-blue-900 to-indigo-900 text-white py-16 md:py-24 overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <!-- Ambient Glows & Dot Matrix Grid -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-genesis-pink/30 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+    
     <div class="container mx-auto px-4 max-w-6xl relative z-10 text-center">
-        <span class="inline-block py-1.5 px-4 bg-genesis-pink/20 text-genesis-pink border border-genesis-pink/30 rounded-full font-bold text-xs uppercase tracking-widest mb-4 backdrop-blur-sm">
+        <span class="inline-block py-1.5 px-4 bg-genesis-pink/20 text-genesis-pink border border-genesis-pink/30 rounded-full font-bold text-xs uppercase tracking-widest mb-4 backdrop-blur-md shadow-lg">
             {{ app()->getLocale() == 'id' ? 'Galeri Foto & Dokumentasi' : 'Photo Gallery & Documentation' }}
         </span>
-        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight drop-shadow-md">
             {{ app()->getLocale() == 'id' ? 'Dokumentasi Kegiatan' : 'Event Documentation' }}
         </h1>
-        <p class="text-gray-300 text-sm md:text-base max-w-2xl mx-auto font-medium">
+        <p class="text-gray-300 text-sm md:text-base max-w-2xl mx-auto font-medium leading-relaxed">
             {{ app()->getLocale() == 'id' 
                 ? 'Arsip dokumentasi foto berbagai kegiatan, pelatihan, dan olimpiade pendidikan nasional Genesis Indonesia.' 
                 : 'Photo documentation archives of various events, training, and national education olympiads by Genesis Indonesia.' }}
@@ -22,8 +26,12 @@
 </section>
 
 <!-- Main Gallery Content -->
-<section class="py-12 md:py-20 bg-gray-50 dark:bg-gray-900 min-h-screen">
-    <div class="container mx-auto px-4 max-w-6xl">
+<section class="relative py-12 md:py-20 bg-gray-50 dark:bg-gray-900 min-h-screen overflow-hidden">
+    <!-- Decorative Ambient Blobs -->
+    <div class="absolute top-1/3 left-0 w-80 h-80 bg-genesis-pink/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="container mx-auto px-4 max-w-6xl relative z-10">
         
         @if($categories->count() > 0)
             <!-- Category Filter Tabs -->

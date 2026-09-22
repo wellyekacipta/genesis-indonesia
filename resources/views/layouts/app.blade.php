@@ -212,7 +212,102 @@
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-white/10 pt-12 text-center text-xs text-gray-400">
+            <!-- Visitor Statistics Section -->
+            <div class="border-t border-white/10 pt-12 pb-8 my-8">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-10">
+                    <!-- 4 Stat Counters -->
+                    <div class="w-full lg:w-1/2">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <i class="fa-solid fa-chart-line text-genesis-pink text-lg"></i>
+                            <h4 class="font-bold text-white uppercase tracking-widest text-xs md:text-sm">
+                                {{ app()->getLocale() == 'id' ? 'Statistik Pengunjung Website' : 'Website Visitor Statistics' }}
+                            </h4>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <!-- Today -->
+                            <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition backdrop-blur-sm shadow-inner">
+                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">
+                                    {{ app()->getLocale() == 'id' ? 'Hari Ini' : 'Today' }}
+                                </div>
+                                <div class="text-lg md:text-xl font-extrabold text-genesis-pink">
+                                    {{ number_format($visitorStats['today'] ?? 0) }}
+                                </div>
+                            </div>
+
+                            <!-- Yesterday -->
+                            <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition backdrop-blur-sm shadow-inner">
+                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">
+                                    {{ app()->getLocale() == 'id' ? 'Kemarin' : 'Yesterday' }}
+                                </div>
+                                <div class="text-lg md:text-xl font-extrabold text-blue-400">
+                                    {{ number_format($visitorStats['yesterday'] ?? 0) }}
+                                </div>
+                            </div>
+
+                            <!-- Month -->
+                            <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition backdrop-blur-sm shadow-inner">
+                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">
+                                    {{ app()->getLocale() == 'id' ? 'Bulan Ini' : 'This Month' }}
+                                </div>
+                                <div class="text-lg md:text-xl font-extrabold text-emerald-400">
+                                    {{ number_format($visitorStats['month'] ?? 0) }}
+                                </div>
+                            </div>
+
+                            <!-- Total -->
+                            <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition backdrop-blur-sm shadow-inner">
+                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">
+                                    {{ app()->getLocale() == 'id' ? 'Total' : 'Total' }}
+                                </div>
+                                <div class="text-lg md:text-xl font-extrabold text-amber-400">
+                                    {{ number_format($visitorStats['total'] ?? 0) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weekly Visitor Graph (Senin - Ahad) -->
+                    <div class="w-full lg:w-1/2 bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-gray-200 uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-chart-column mr-2 text-genesis-pink"></i>
+                                {{ app()->getLocale() == 'id' ? 'Grafik Pengunjung (Senin - Ahad)' : 'Visitor Graph (Mon - Sun)' }}
+                            </span>
+                            <span class="text-[10px] bg-genesis-pink/20 text-genesis-pink border border-genesis-pink/30 font-bold px-2.5 py-0.5 rounded-full uppercase">
+                                {{ app()->getLocale() == 'id' ? 'Minggu Ini' : 'This Week' }}
+                            </span>
+                        </div>
+
+                        <!-- Bar Chart Display -->
+                        <div class="flex items-end justify-between h-28 gap-2 pt-6 px-1 border-b border-white/10 pb-2">
+                            @foreach(($visitorStats['weekly'] ?? []) as $dayStat)
+                                <div class="flex flex-col items-center flex-1 group">
+                                    <!-- Tooltip count -->
+                                    <span class="text-[10px] font-bold opacity-70 group-hover:opacity-100 transition-opacity text-genesis-pink mb-1">
+                                        {{ $dayStat['count'] }}
+                                    </span>
+                                    <!-- Bar -->
+                                    <div class="w-full max-w-[26px] rounded-t-md transition-all duration-500 {{ $dayStat['is_today'] ? 'bg-gradient-to-t from-genesis-pink to-pink-400 shadow-md shadow-genesis-pink/50' : 'bg-white/20 group-hover:bg-genesis-pink/60' }}"
+                                         style="height: {{ $dayStat['height_percent'] }}%;">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <!-- Day Labels (Senin - Ahad) -->
+                        <div class="flex justify-between gap-2 pt-2 px-1 text-[10px] font-bold text-gray-400">
+                            @foreach(($visitorStats['weekly'] ?? []) as $dayStat)
+                                <div class="flex-1 text-center {{ $dayStat['is_today'] ? 'text-genesis-pink font-extrabold' : '' }}">
+                                    {{ app()->getLocale() == 'id' ? $dayStat['name_id'] : $dayStat['name_en'] }}
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center text-xs text-gray-400">
                 <p>&copy; {{ date('Y') }} Genesis Indonesia Education Centre. All Rights Reserved. | Developed by Epilog Society</p>
             </div>
         </div>
