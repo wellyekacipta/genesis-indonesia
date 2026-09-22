@@ -35,7 +35,20 @@ class Article extends Model
         static::saved(function ($article) {
             static::syncFileToPublicStorage($article->image);
             static::syncFileToPublicStorage($article->pdf_file);
+            static::syncEmbeddedContentFiles($article->content_id);
+            static::syncEmbeddedContentFiles($article->content_en);
         });
+    }
+
+    public static function syncEmbeddedContentFiles($content)
+    {
+        if (!$content) return;
+        preg_match_all('/storage\/([^\s"\'<>]+)/i', $content, $matches);
+        if (!empty($matches[1])) {
+            foreach ($matches[1] as $path) {
+                static::syncFileToPublicStorage($path);
+            }
+        }
     }
 
     public static function syncFileToPublicStorage($path)
@@ -45,6 +58,12 @@ class Article extends Model
         }
 
         $cleanPath = preg_replace('/^(public\/|storage\/)/', '', $path);
+        $sourcePath = storage_path('app/public/' . $cleanPath);
+
+        if (!file_exists($sourcePath)) {
+            $sourcePath = storage_path('app/private/' . $cleanPath);
+        }
+
         $targetPath = public_path('storage/' . $cleanPath);
         $targetDir = dirname($targetPath);
 
@@ -53,19 +72,11 @@ class Article extends Model
         }
         @chmod($targetDir, 0755);
 
-        if (file_exists($targetPath) && !is_dir($targetPath)) {
-            @chmod($targetPath, 0644);
-            return;
-        }
-
-        $sourcePath = storage_path('app/public/' . $cleanPath);
-        if (!file_exists($sourcePath)) {
-            $sourcePath = storage_path('app/private/' . $cleanPath);
-        }
-
         if (file_exists($sourcePath) && !is_dir($sourcePath)) {
             @chmod($sourcePath, 0644);
             @copy($sourcePath, $targetPath);
+            @chmod($targetPath, 0644);
+        } elseif (file_exists($targetPath) && !is_dir($targetPath)) {
             @chmod($targetPath, 0644);
         }
     }
