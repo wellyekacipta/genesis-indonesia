@@ -34,6 +34,9 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => '#1e40af', // genesis-blue
             ])
             ->brandName('Genesis Indonesia')
+            ->brandLogo(fn () => asset('images/logo.png'))
+            ->brandLogoHeight('2.5rem')
+            ->favicon(fn () => asset('images/logo.png'))
             ->font('Poppins')
             ->renderHook(
                 PanelsRenderHook::STYLES_AFTER,

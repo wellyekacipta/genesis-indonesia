@@ -68,7 +68,7 @@
     <div class="w-full md:w-1/2 bg-gradient-to-br from-genesis-pink to-genesis-pinkDark p-12 md:p-16 flex flex-col justify-center items-center text-center text-white relative">
         <div class="flex flex-col items-center">
             <a href="{{ route('home') }}" class="mb-6 hover:scale-105 transition-transform duration-300 inline-block">
-                <img src="https://lh3.googleusercontent.com/a/ACg8ocJW-BsErSCxATtNF1sjxdywseKWWUd7D0z6SkFU-DKGrIA_mqo=s432-c-no" 
+                <img src="{{ asset('images/logo.png') }}" 
                      alt="Logo Genesis" 
                      class="w-24 h-24 md:w-32 md:h-32 object-contain bg-white rounded-full p-2 shadow-2xl border-4 border-white/20">
             </a>

@@ -6,7 +6,7 @@
     
     <title>@yield('title', 'Genesis Indonesia Education Centre | Pusat Olimpiade Pendidikan Nasional')</title>
     <meta name="description" content="@yield('meta_description', 'Genesis Indonesia Education Centre. Organisasi pelatihan dan penyelenggara olimpiade pendidikan nasional unggulan.')">
-    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/a/ACg8ocJW-BsErSCxATtNF1sjxdywseKWWUd7D0z6SkFU-DKGrIA_mqo=s432-c-no">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     
     <!-- Fonts and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -57,7 +57,7 @@
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-4">
                     <a href="{{ route('home') }}" class="logo-container">
-                        <img src="https://lh3.googleusercontent.com/a/ACg8ocJW-BsErSCxATtNF1sjxdywseKWWUd7D0z6SkFU-DKGrIA_mqo=s432-c-no" 
+                        <img src="{{ asset('images/logo.png') }}" 
                              alt="Logo Genesis" 
                              class="w-12 h-12 md:w-16 md:h-16 object-contain bg-white rounded-full p-1 shadow-sm border border-gray-100">
                     </a>
@@ -179,7 +179,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
                 <div class="md:col-span-2">
                     <div class="flex items-center space-x-4 mb-8">
-                        <img src="https://lh3.googleusercontent.com/a/ACg8ocJW-BsErSCxATtNF1sjxdywseKWWUd7D0z6SkFU-DKGrIA_mqo=s432-c-no" alt="Genesis Logo" class="w-20 h-20 bg-white rounded-full p-1 shadow-xl">
+                        <img src="{{ asset('images/logo.png') }}" alt="Genesis Logo" class="w-20 h-20 bg-white rounded-full p-1 shadow-xl">
                         <div>
                             <h3 class="text-2xl font-bold">Genesis Indonesia</h3>
                             <p class="text-genesis-pink text-xs font-bold tracking-widest uppercase">Education Centre</p>
