@@ -47,11 +47,11 @@ return [
             'report' => false,
             'permissions' => [
                 'file' => [
-                    'public' => 0644,
+                    'public' => 0666,
                     'private' => 0600,
                 ],
                 'dir' => [
-                    'public' => 0755,
+                    'public' => 0777,
                     'private' => 0700,
                 ],
             ],

@@ -109,9 +109,9 @@ Route::get('/fix-storage-permissions', function () {
         @unlink($publicStorage);
     }
     if (!file_exists($publicStorage)) {
-        @mkdir($publicStorage, 0755, true);
+        @mkdir($publicStorage, 0777, true);
     }
-    @chmod($publicStorage, 0755);
+    @chmod($publicStorage, 0777);
 
     $countFiles = 0;
     $countDirs = 0;
@@ -121,9 +121,9 @@ Route::get('/fix-storage-permissions', function () {
         if (!file_exists($src)) return;
         if (is_dir($src)) {
             if (!file_exists($dst)) {
-                @mkdir($dst, 0755, true);
+                @mkdir($dst, 0777, true);
             }
-            @chmod($dst, 0755);
+            @chmod($dst, 0777);
             $countDirs++;
             $items = @scandir($src) ?: [];
             foreach ($items as $item) {
@@ -131,13 +131,14 @@ Route::get('/fix-storage-permissions', function () {
                 $copyAndFix($src . '/' . $item, $dst . '/' . $item);
             }
         } else {
-            @chmod($src, 0644);
+            @chmod($src, 0666);
             $dstDir = dirname($dst);
             if (!file_exists($dstDir)) {
-                @mkdir($dstDir, 0755, true);
+                @mkdir($dstDir, 0777, true);
             }
+            @chmod($dstDir, 0777);
             @copy($src, $dst);
-            @chmod($dst, 0644);
+            @chmod($dst, 0666);
             $countFiles++;
         }
     };
@@ -150,21 +151,21 @@ Route::get('/fix-storage-permissions', function () {
     $fixPermissionsOnly = function ($dir) use (&$fixPermissionsOnly) {
         if (!file_exists($dir)) return;
         if (is_dir($dir)) {
-            @chmod($dir, 0755);
+            @chmod($dir, 0777);
             $items = @scandir($dir) ?: [];
             foreach ($items as $item) {
                 if ($item === '.' || $item === '..') continue;
                 $fixPermissionsOnly($dir . '/' . $item);
             }
         } else {
-            @chmod($dir, 0644);
+            @chmod($dir, 0666);
         }
     };
     $fixPermissionsOnly($publicStorage);
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Successfully converted public/storage to physical directory and fixed all permissions!',
+        'message' => 'Successfully converted public/storage to physical directory and fixed all permissions to 0777/0666!',
         'directories_processed' => $countDirs,
         'files_processed' => $countFiles,
         'public_storage_type' => is_link($publicStorage) ? 'symlink' : 'real_directory',
