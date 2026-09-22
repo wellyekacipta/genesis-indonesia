@@ -17,6 +17,13 @@ class Competition extends Model
         'is_active',
     ];
 
+    protected static function booted()
+    {
+        static::saved(function ($competition) {
+            Article::syncFileToPublicStorage($competition->image);
+        });
+    }
+
     public function getImageUrlAttribute()
     {
         if (!$this->image) {

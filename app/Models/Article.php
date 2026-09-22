@@ -30,6 +30,37 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
+    protected static function booted()
+    {
+        static::saved(function ($article) {
+            static::syncFileToPublicStorage($article->image);
+            static::syncFileToPublicStorage($article->pdf_file);
+        });
+    }
+
+    public static function syncFileToPublicStorage($path)
+    {
+        if (!$path || \Illuminate\Support\Str::startsWith($path, ['http://', 'https://'])) {
+            return;
+        }
+
+        $cleanPath = preg_replace('/^(public\/|storage\/)/', '', $path);
+        $sourcePath = storage_path('app/public/' . $cleanPath);
+
+        if (!file_exists($sourcePath)) {
+            $sourcePath = storage_path('app/private/' . $cleanPath);
+        }
+
+        if (file_exists($sourcePath) && !is_dir($sourcePath)) {
+            $targetPath = public_path('storage/' . $cleanPath);
+            $targetDir = dirname($targetPath);
+            if (!file_exists($targetDir)) {
+                @mkdir($targetDir, 0755, true);
+            }
+            @copy($sourcePath, $targetPath);
+        }
+    }
+
     public function approvedComments()
     {
         return $this->hasMany(Comment::class)->where('is_approved', true);

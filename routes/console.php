@@ -19,52 +19,38 @@ Artisan::command('log:clear', function () {
 
 Artisan::command('storage:fix-private', function () {
     $privateDir = storage_path('app/private');
-    $publicDir = storage_path('app/public');
+    $publicAppDir = storage_path('app/public');
+    $publicWebDir = public_path('storage');
 
-    if (!file_exists($privateDir)) {
-        $this->info('No private storage directory found.');
-        return;
-    }
+    $copiedCount = 0;
 
-    try {
-        $dirIterator = new \FilesystemIterator($privateDir, \FilesystemIterator::SKIP_DOTS);
-        $copiedCount = 0;
-        
-        foreach ($dirIterator as $fileInfo) {
-            if ($fileInfo->isDir()) {
-                if ($fileInfo->getFilename() === 'livewire-tmp') {
-                    continue;
-                }
-                
-                try {
-                    $subIterator = new \RecursiveIteratorIterator(
-                        new \RecursiveDirectoryIterator($fileInfo->getPathname(), \RecursiveDirectoryIterator::SKIP_DOTS),
-                        \RecursiveIteratorIterator::SELF_FIRST
-                    );
-                    foreach ($subIterator as $item) {
-                        if ($item->isFile() && $item->getFilename() !== '.gitignore') {
-                            $relativePath = substr($item->getPathname(), strlen($privateDir) + 1);
-                            $targetPath = $publicDir . DIRECTORY_SEPARATOR . $relativePath;
-                            $targetDir = dirname($targetPath);
-                            if (!file_exists($targetDir)) {
-                                @mkdir($targetDir, 0755, true);
-                            }
-                            @copy($item->getPathname(), $targetPath);
-                            $copiedCount++;
-                        }
+    $syncFolder = function ($srcDir, $dstDir) use (&$copiedCount, &$syncFolder) {
+        if (!file_exists($srcDir)) return;
+        try {
+            $iterator = new \FilesystemIterator($srcDir, \FilesystemIterator::SKIP_DOTS);
+            foreach ($iterator as $item) {
+                if ($item->isDir()) {
+                    if ($item->getFilename() === 'livewire-tmp') continue;
+                    $syncFolder($item->getPathname(), $dstDir . DIRECTORY_SEPARATOR . $item->getFilename());
+                } elseif ($item->isFile() && $item->getFilename() !== '.gitignore') {
+                    if (!file_exists($dstDir)) {
+                        @mkdir($dstDir, 0755, true);
                     }
-                } catch (\Throwable $e) {
-                    continue;
+                    $targetPath = $dstDir . DIRECTORY_SEPARATOR . $item->getFilename();
+                    @copy($item->getPathname(), $targetPath);
+                    $copiedCount++;
                 }
-            } elseif ($fileInfo->isFile() && $fileInfo->getFilename() !== '.gitignore') {
-                $targetPath = $publicDir . DIRECTORY_SEPARATOR . $fileInfo->getFilename();
-                @copy($fileInfo->getPathname(), $targetPath);
-                $copiedCount++;
             }
+        } catch (\Throwable $e) {
+            // ignore permission errors on single subfolder
         }
+    };
 
-        $this->info("Successfully copied {$copiedCount} files from private storage to public storage.");
-    } catch (\Throwable $e) {
-        $this->info("Sync completed.");
-    }
+    // 1. Sync private to app/public
+    $syncFolder($privateDir, $publicAppDir);
+
+    // 2. Sync app/public to public/storage
+    $syncFolder($publicAppDir, $publicWebDir);
+
+    $this->info("Successfully synced storage files ({$copiedCount} files processed).");
 })->purpose('Sync files from private storage to public storage');
