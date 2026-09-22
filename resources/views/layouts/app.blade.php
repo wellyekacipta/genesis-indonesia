@@ -80,6 +80,9 @@
                     <a href="{{ route('articles.index') }}" class="{{ request()->routeIs('articles.*') ? 'text-genesis-pink border-b-2 border-genesis-pink pb-1' : 'text-gray-600 dark:text-gray-300 hover:text-genesis-pink transition-colors' }}">
                         {{ app()->getLocale() == 'id' ? 'Berita' : 'News' }}
                     </a>
+                    <a href="{{ route('documentation.index') }}" class="{{ request()->routeIs('documentation.*') ? 'text-genesis-pink border-b-2 border-genesis-pink pb-1' : 'text-gray-600 dark:text-gray-300 hover:text-genesis-pink transition-colors' }}">
+                        {{ app()->getLocale() == 'id' ? 'Dokumentasi' : 'Documentation' }}
+                    </a>
                     
                     <div class="flex items-center space-x-3 border-l border-gray-200 dark:border-gray-750 pl-6">
                         <!-- Language Toggle Dropdown -->
@@ -164,6 +167,7 @@
                 <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'text-genesis-pink font-bold py-2 border-b border-gray-50 dark:border-gray-700' : 'text-gray-600 dark:text-gray-300 font-semibold py-2 border-b border-gray-50 dark:border-gray-700' }}">{{ app()->getLocale() == 'id' ? 'Tentang Kami' : 'About Us' }}</a>
                 <a href="{{ route('home') }}#akademik" class="text-gray-600 dark:text-gray-300 font-semibold py-2 border-b border-gray-50 dark:border-gray-700">{{ app()->getLocale() == 'id' ? 'Program' : 'Programs' }}</a>
                 <a href="{{ route('articles.index') }}" class="{{ request()->routeIs('articles.*') ? 'text-genesis-pink font-bold py-2 border-b border-gray-50 dark:border-gray-700' : 'text-gray-600 dark:text-gray-300 font-semibold py-2 border-b border-gray-50 dark:border-gray-700' }}">{{ app()->getLocale() == 'id' ? 'Berita' : 'News' }}</a>
+                <a href="{{ route('documentation.index') }}" class="{{ request()->routeIs('documentation.*') ? 'text-genesis-pink font-bold py-2 border-b border-gray-50 dark:border-gray-700' : 'text-gray-600 dark:text-gray-300 font-semibold py-2 border-b border-gray-50 dark:border-gray-700' }}">{{ app()->getLocale() == 'id' ? 'Dokumentasi' : 'Documentation' }}</a>
                 <a href="/admin" class="bg-genesis-pink text-white text-center font-bold py-3 rounded-xl shadow-lg mt-2">Login</a>
             </div>
         </div>
@@ -195,6 +199,7 @@
                         <li><a href="{{ route('about') }}" class="hover:text-genesis-pink transition-colors">Tentang Kami</a></li>
                         <li><a href="{{ route('home') }}#akademik" class="hover:text-genesis-pink transition-colors">Program Utama</a></li>
                         <li><a href="{{ route('articles.index') }}" class="hover:text-genesis-pink transition-colors">Berita Terkini</a></li>
+                        <li><a href="{{ route('documentation.index') }}" class="hover:text-genesis-pink transition-colors">Dokumentasi Foto</a></li>
                         <li><a href="/admin" class="hover:text-genesis-pink transition-colors">Portal Login</a></li>
                     </ul>
                 </div>
