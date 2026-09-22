@@ -242,46 +242,7 @@
     </div>
 </section>
 
-<!-- Partnership Section -->
-<section id="kemitraan" class="py-20 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <div class="text-center mb-12">
-            <span class="inline-block py-1 px-3 bg-genesis-pink/10 text-genesis-pink rounded-lg font-bold text-xs mb-3 uppercase tracking-widest">
-                {{ app()->getLocale() == 'id' ? 'Kemitraan' : 'Partnership' }}
-            </span>
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
-                {{ app()->getLocale() == 'id' ? 'Bekerja Sama Dengan' : 'In Partnership With' }}
-            </h2>
-            <div class="w-16 h-1 bg-genesis-pink mx-auto rounded-full"></div>
-        </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
-            <!-- Partner 1: Ruangguru -->
-            <div class="flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-900 rounded-2xl w-full h-28 border border-transparent hover:border-genesis-pink/20 hover:shadow-xl transition-all duration-300 group">
-                <i class="fa-solid fa-graduation-cap text-3xl text-gray-400 group-hover:text-genesis-pink transition-colors mb-2"></i>
-                <span class="font-bold text-sm text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Ruangguru</span>
-            </div>
-            
-            <!-- Partner 2: Zenius -->
-            <div class="flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-900 rounded-2xl w-full h-28 border border-transparent hover:border-genesis-pink/20 hover:shadow-xl transition-all duration-300 group">
-                <i class="fa-solid fa-brain text-3xl text-gray-400 group-hover:text-genesis-pink transition-colors mb-2"></i>
-                <span class="font-bold text-sm text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Zenius Education</span>
-            </div>
-
-            <!-- Partner 3: Quipper -->
-            <div class="flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-900 rounded-2xl w-full h-28 border border-transparent hover:border-genesis-pink/20 hover:shadow-xl transition-all duration-300 group">
-                <i class="fa-solid fa-book-open text-3xl text-gray-400 group-hover:text-genesis-pink transition-colors mb-2"></i>
-                <span class="font-bold text-sm text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Quipper School</span>
-            </div>
-
-            <!-- Partner 4: British Council -->
-            <div class="flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-900 rounded-2xl w-full h-28 border border-transparent hover:border-genesis-pink/20 hover:shadow-xl transition-all duration-300 group">
-                <i class="fa-solid fa-globe text-3xl text-gray-400 group-hover:text-genesis-pink transition-colors mb-2"></i>
-                <span class="font-bold text-sm text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">British Council</span>
-            </div>
-        </div>
-    </div>
-</section>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
