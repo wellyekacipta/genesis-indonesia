@@ -87,48 +87,87 @@ Route::get('/team/{slug}', function ($slug) {
 
 // One-click route to fix all storage file/folder permissions via PHP web process
 Route::get('/fix-storage-permissions', function () {
-    $dirs = [
+    $storageAppPublic = storage_path('app/public');
+    $publicStorage = public_path('storage');
+
+    // 1. Fix parent directory permissions
+    $parentDirs = [
+        base_path(),
         storage_path(),
         storage_path('app'),
-        storage_path('app/public'),
-        public_path('storage'),
+        $storageAppPublic,
+        public_path(),
     ];
+    foreach ($parentDirs as $pDir) {
+        if (file_exists($pDir)) {
+            @chmod($pDir, 0755);
+        }
+    }
+
+    // 2. Handle public/storage symlink vs real directory (convert symlink to real directory to bypass Nginx symlink 403 restrictions)
+    if (is_link($publicStorage)) {
+        @unlink($publicStorage);
+    }
+    if (!file_exists($publicStorage)) {
+        @mkdir($publicStorage, 0755, true);
+    }
+    @chmod($publicStorage, 0755);
 
     $countFiles = 0;
     $countDirs = 0;
 
-    $fixPath = function ($path) use (&$fixPath, &$countFiles, &$countDirs) {
-        if (!file_exists($path)) return;
-        if (is_dir($path)) {
-            @chmod($path, 0755);
+    // 3. Helper to recursively copy files and fix permissions
+    $copyAndFix = function ($src, $dst) use (&$copyAndFix, &$countFiles, &$countDirs) {
+        if (!file_exists($src)) return;
+        if (is_dir($src)) {
+            if (!file_exists($dst)) {
+                @mkdir($dst, 0755, true);
+            }
+            @chmod($dst, 0755);
             $countDirs++;
-            $items = @scandir($path) ?: [];
+            $items = @scandir($src) ?: [];
             foreach ($items as $item) {
                 if ($item === '.' || $item === '..') continue;
-                $fixPath($path . '/' . $item);
+                $copyAndFix($src . '/' . $item, $dst . '/' . $item);
             }
         } else {
-            @chmod($path, 0644);
+            @chmod($src, 0644);
+            $dstDir = dirname($dst);
+            if (!file_exists($dstDir)) {
+                @mkdir($dstDir, 0755, true);
+            }
+            @copy($src, $dst);
+            @chmod($dst, 0644);
             $countFiles++;
         }
     };
 
-    foreach ($dirs as $dir) {
-        $fixPath($dir);
+    if (file_exists($storageAppPublic)) {
+        $copyAndFix($storageAppPublic, $publicStorage);
     }
 
-    // Ensure symbolic link is created if missing
-    try {
-        if (!file_exists(public_path('storage'))) {
-            @app('files')->link(storage_path('app/public'), public_path('storage'));
+    // Also fix permissions for any pre-existing files in publicStorage
+    $fixPermissionsOnly = function ($dir) use (&$fixPermissionsOnly) {
+        if (!file_exists($dir)) return;
+        if (is_dir($dir)) {
+            @chmod($dir, 0755);
+            $items = @scandir($dir) ?: [];
+            foreach ($items as $item) {
+                if ($item === '.' || $item === '..') continue;
+                $fixPermissionsOnly($dir . '/' . $item);
+            }
+        } else {
+            @chmod($dir, 0644);
         }
-    } catch (\Throwable $e) {}
+    };
+    $fixPermissionsOnly($publicStorage);
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Permissions fixed successfully by PHP web process!',
-        'directories_updated' => $countDirs,
-        'files_updated' => $countFiles,
+        'message' => 'Successfully converted public/storage to physical directory and fixed all permissions!',
+        'directories_processed' => $countDirs,
+        'files_processed' => $countFiles,
+        'public_storage_type' => is_link($publicStorage) ? 'symlink' : 'real_directory',
     ]);
 });
 
