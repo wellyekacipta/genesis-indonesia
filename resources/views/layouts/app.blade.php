@@ -227,8 +227,11 @@
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                             <!-- Today -->
                             <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition backdrop-blur-sm shadow-inner">
-                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">
+                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">
                                     {{ app()->getLocale() == 'id' ? 'Hari Ini' : 'Today' }}
+                                </div>
+                                <div class="text-[9px] text-genesis-pink font-semibold mb-1">
+                                    ({{ app()->getLocale() == 'id' ? ($visitorStats['today_date_id'] ?? date('j Sep Y')) : ($visitorStats['today_date_en'] ?? date('M j, Y')) }})
                                 </div>
                                 <div class="text-lg md:text-xl font-extrabold text-genesis-pink">
                                     {{ number_format($visitorStats['today'] ?? 0) }}
@@ -237,8 +240,11 @@
 
                             <!-- Yesterday -->
                             <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition backdrop-blur-sm shadow-inner">
-                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">
+                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">
                                     {{ app()->getLocale() == 'id' ? 'Kemarin' : 'Yesterday' }}
+                                </div>
+                                <div class="text-[9px] text-blue-400 font-semibold mb-1">
+                                    ({{ app()->getLocale() == 'id' ? ($visitorStats['yesterday_date_id'] ?? date('j Sep Y')) : ($visitorStats['yesterday_date_en'] ?? date('M j, Y')) }})
                                 </div>
                                 <div class="text-lg md:text-xl font-extrabold text-blue-400">
                                     {{ number_format($visitorStats['yesterday'] ?? 0) }}
@@ -247,8 +253,11 @@
 
                             <!-- Month -->
                             <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition backdrop-blur-sm shadow-inner">
-                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">
+                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">
                                     {{ app()->getLocale() == 'id' ? 'Bulan Ini' : 'This Month' }}
+                                </div>
+                                <div class="text-[9px] text-emerald-400 font-semibold mb-1">
+                                    ({{ app()->getLocale() == 'id' ? ($visitorStats['month_name_id'] ?? date('F Y')) : ($visitorStats['month_name_en'] ?? date('F Y')) }})
                                 </div>
                                 <div class="text-lg md:text-xl font-extrabold text-emerald-400">
                                     {{ number_format($visitorStats['month'] ?? 0) }}
@@ -257,8 +266,11 @@
 
                             <!-- Total -->
                             <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition backdrop-blur-sm shadow-inner">
-                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">
+                                <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">
                                     {{ app()->getLocale() == 'id' ? 'Total' : 'Total' }}
+                                </div>
+                                <div class="text-[9px] text-amber-400 font-semibold mb-1">
+                                    ({{ app()->getLocale() == 'id' ? 'Semua Waktu' : 'All Time' }})
                                 </div>
                                 <div class="text-lg md:text-xl font-extrabold text-amber-400">
                                     {{ number_format($visitorStats['total'] ?? 0) }}

@@ -93,10 +93,38 @@ class VisitorLog extends Model
             $ws['height_percent'] = max(15, min(100, round(($ws['count'] / $maxCount) * 100)));
         }
 
+        // Format dates and month names for ID & EN
+        $monthsId = [
+            1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April',
+            5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus',
+            9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember'
+        ];
+
+        $monthsEn = [
+            1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April',
+            5 => 'May', 6 => 'June', 7 => 'July', 8 => 'August',
+            9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December'
+        ];
+
+        $todayDateId = $today->format('j') . ' ' . substr($monthsId[$today->month], 0, 3) . ' ' . $today->format('Y');
+        $todayDateEn = substr($monthsEn[$today->month], 0, 3) . ' ' . $today->format('j, Y');
+
+        $yesterdayDateId = $yesterday->format('j') . ' ' . substr($monthsId[$yesterday->month], 0, 3) . ' ' . $yesterday->format('Y');
+        $yesterdayDateEn = substr($monthsEn[$yesterday->month], 0, 3) . ' ' . $yesterday->format('j, Y');
+
+        $monthNameId = $monthsId[$today->month] . ' ' . $today->format('Y');
+        $monthNameEn = $monthsEn[$today->month] . ' ' . $today->format('Y');
+
         return [
             'today' => $todayCount,
+            'today_date_id' => $todayDateId,
+            'today_date_en' => $todayDateEn,
             'yesterday' => $yesterdayCount,
+            'yesterday_date_id' => $yesterdayDateId,
+            'yesterday_date_en' => $yesterdayDateEn,
             'month' => $monthCount,
+            'month_name_id' => $monthNameId,
+            'month_name_en' => $monthNameEn,
             'total' => $totalCount,
             'weekly' => $weeklyStats,
         ];

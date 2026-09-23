@@ -33,8 +33,14 @@ class AppServiceProvider extends ServiceProvider
                 // Fallback stats if database table is empty or migrating
                 $view->with('visitorStats', [
                     'today' => 15,
+                    'today_date_id' => date('j') . ' Sep ' . date('Y'),
+                    'today_date_en' => 'Sep ' . date('j, Y'),
                     'yesterday' => 42,
+                    'yesterday_date_id' => (date('j') - 1) . ' Sep ' . date('Y'),
+                    'yesterday_date_en' => 'Sep ' . (date('j') - 1) . ', ' . date('Y'),
                     'month' => 385,
+                    'month_name_id' => 'September ' . date('Y'),
+                    'month_name_en' => 'September ' . date('Y'),
                     'total' => 1250,
                     'weekly' => [
                         ['day_num' => 1, 'name_id' => 'Senin', 'name_en' => 'Mon', 'count' => 45, 'height_percent' => 75, 'is_today' => false],
