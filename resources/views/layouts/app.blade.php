@@ -230,7 +230,7 @@
                                 <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">
                                     {{ app()->getLocale() == 'id' ? 'Hari Ini' : 'Today' }}
                                 </div>
-                                <div class="text-[9px] text-genesis-pink font-semibold mb-1">
+                                <div class="text-[8px] text-genesis-pink font-medium tracking-tight opacity-80 mb-1">
                                     ({{ app()->getLocale() == 'id' ? ($visitorStats['today_date_id'] ?? date('j Sep Y')) : ($visitorStats['today_date_en'] ?? date('M j, Y')) }})
                                 </div>
                                 <div class="text-lg md:text-xl font-extrabold text-genesis-pink">
@@ -243,7 +243,7 @@
                                 <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">
                                     {{ app()->getLocale() == 'id' ? 'Kemarin' : 'Yesterday' }}
                                 </div>
-                                <div class="text-[9px] text-blue-400 font-semibold mb-1">
+                                <div class="text-[8px] text-blue-400 font-medium tracking-tight opacity-80 mb-1">
                                     ({{ app()->getLocale() == 'id' ? ($visitorStats['yesterday_date_id'] ?? date('j Sep Y')) : ($visitorStats['yesterday_date_en'] ?? date('M j, Y')) }})
                                 </div>
                                 <div class="text-lg md:text-xl font-extrabold text-blue-400">
@@ -256,7 +256,7 @@
                                 <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">
                                     {{ app()->getLocale() == 'id' ? 'Bulan Ini' : 'This Month' }}
                                 </div>
-                                <div class="text-[9px] text-emerald-400 font-semibold mb-1">
+                                <div class="text-[8px] text-emerald-400 font-medium tracking-tight opacity-80 mb-1">
                                     ({{ app()->getLocale() == 'id' ? ($visitorStats['month_name_id'] ?? date('F Y')) : ($visitorStats['month_name_en'] ?? date('F Y')) }})
                                 </div>
                                 <div class="text-lg md:text-xl font-extrabold text-emerald-400">
@@ -269,7 +269,7 @@
                                 <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">
                                     {{ app()->getLocale() == 'id' ? 'Total' : 'Total' }}
                                 </div>
-                                <div class="text-[9px] text-amber-400 font-semibold mb-1">
+                                <div class="text-[8px] text-amber-400 font-medium tracking-tight opacity-80 mb-1">
                                     ({{ app()->getLocale() == 'id' ? 'Semua Waktu' : 'All Time' }})
                                 </div>
                                 <div class="text-lg md:text-xl font-extrabold text-amber-400">
