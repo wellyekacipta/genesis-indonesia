@@ -43,13 +43,13 @@ class AppServiceProvider extends ServiceProvider
                     'month_name_en' => 'September ' . date('Y'),
                     'total' => 1250,
                     'weekly' => [
-                        ['day_num' => 1, 'name_id' => 'Senin', 'name_en' => 'Mon', 'count' => 45, 'height_percent' => 75, 'is_today' => false],
-                        ['day_num' => 2, 'name_id' => 'Selasa', 'name_en' => 'Tue', 'count' => 52, 'height_percent' => 85, 'is_today' => false],
-                        ['day_num' => 3, 'name_id' => 'Rabu', 'name_en' => 'Wed', 'count' => 48, 'height_percent' => 80, 'is_today' => false],
-                        ['day_num' => 4, 'name_id' => 'Kamis', 'name_en' => 'Thu', 'count' => 60, 'height_percent' => 100, 'is_today' => false],
-                        ['day_num' => 5, 'name_id' => 'Jumat', 'name_en' => 'Fri', 'count' => 55, 'height_percent' => 90, 'is_today' => false],
-                        ['day_num' => 6, 'name_id' => 'Sabtu', 'name_en' => 'Sat', 'count' => 38, 'height_percent' => 60, 'is_today' => false],
-                        ['day_num' => 7, 'name_id' => 'Ahad', 'name_en' => 'Sun', 'count' => 32, 'height_percent' => 50, 'is_today' => true],
+                        ['day_num' => 1, 'name_id' => 'Senin', 'name_en' => 'Mon', 'count' => 45, 'height_percent' => 75, 'height_px' => 65, 'is_today' => false],
+                        ['day_num' => 2, 'name_id' => 'Selasa', 'name_en' => 'Tue', 'count' => 52, 'height_percent' => 85, 'height_px' => 75, 'is_today' => false],
+                        ['day_num' => 3, 'name_id' => 'Rabu', 'name_en' => 'Wed', 'count' => 48, 'height_percent' => 80, 'height_px' => 70, 'is_today' => false],
+                        ['day_num' => 4, 'name_id' => 'Kamis', 'name_en' => 'Thu', 'count' => 60, 'height_percent' => 100, 'height_px' => 88, 'is_today' => false],
+                        ['day_num' => 5, 'name_id' => 'Jumat', 'name_en' => 'Fri', 'count' => 55, 'height_percent' => 90, 'height_px' => 80, 'is_today' => false],
+                        ['day_num' => 6, 'name_id' => 'Sabtu', 'name_en' => 'Sat', 'count' => 38, 'height_percent' => 60, 'height_px' => 50, 'is_today' => false],
+                        ['day_num' => 7, 'name_id' => 'Ahad', 'name_en' => 'Sun', 'count' => 32, 'height_percent' => 50, 'height_px' => 42, 'is_today' => true],
                     ]
                 ]);
             }

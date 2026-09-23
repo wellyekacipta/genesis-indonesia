@@ -294,14 +294,14 @@
                         <!-- Bar Chart Display -->
                         <div class="flex items-end justify-between h-28 gap-2 pt-6 px-1 border-b border-white/10 pb-2">
                             @foreach(($visitorStats['weekly'] ?? []) as $dayStat)
-                                <div class="flex flex-col items-center flex-1 group">
+                                <div class="flex flex-col items-center justify-end flex-1 group h-full">
                                     <!-- Tooltip count -->
                                     <span class="text-[10px] font-bold opacity-70 group-hover:opacity-100 transition-opacity text-genesis-pink mb-1">
                                         {{ $dayStat['count'] }}
                                     </span>
                                     <!-- Bar -->
-                                    <div class="w-full max-w-[26px] rounded-t-md transition-all duration-500 {{ $dayStat['is_today'] ? 'bg-gradient-to-t from-genesis-pink to-pink-400 shadow-md shadow-genesis-pink/50' : 'bg-white/20 group-hover:bg-genesis-pink/60' }}"
-                                         style="height: {{ $dayStat['height_percent'] }}%;">
+                                    <div class="w-full max-w-[26px] rounded-t-md transition-all duration-500 {{ $dayStat['is_today'] ? 'bg-gradient-to-t from-genesis-pink to-pink-400 shadow-md shadow-genesis-pink/50' : 'bg-gradient-to-t from-white/20 to-white/40 group-hover:from-genesis-pink/60 group-hover:to-pink-400/80' }}"
+                                         style="height: {{ $dayStat['height_px'] ?? round(($dayStat['height_percent'] ?? 50) * 0.7 + 10) }}px; min-height: 18px;">
                                     </div>
                                 </div>
                             @endforeach

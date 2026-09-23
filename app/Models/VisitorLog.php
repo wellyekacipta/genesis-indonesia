@@ -88,9 +88,10 @@ class VisitorLog extends Model
             ];
         }
 
-        // Calculate height percentage relative to max count for bar graph
+        // Calculate height percentage and explicit height px relative to max count for bar graph
         foreach ($weeklyStats as &$ws) {
-            $ws['height_percent'] = max(15, min(100, round(($ws['count'] / $maxCount) * 100)));
+            $ws['height_percent'] = max(20, min(100, round(($ws['count'] / $maxCount) * 100)));
+            $ws['height_px'] = max(20, min(95, round(($ws['count'] / $maxCount) * 90)));
         }
 
         // Format dates and month names for ID & EN
