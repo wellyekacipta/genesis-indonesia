@@ -53,8 +53,130 @@
                             {{ $title }}
                         </h1>
 
-                        <!-- Prose Content (Using Tailwind Typography + custom overrides for dark mode) -->
-                        <div class="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed
+                        <!-- Prose Content (Using Tailwind Typography + custom overrides for dark mode & responsive Excel tables) -->
+                        <style>
+                            /* Responsive Excel Table Styling for Article Content */
+                            .article-content-body .table-responsive-wrapper {
+                                width: 100%;
+                                overflow-x: auto;
+                                -webkit-overflow-scrolling: touch;
+                                margin: 1.75rem 0;
+                                border-radius: 0.75rem;
+                                border: 1px solid #e2e8f0;
+                                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+                                background: #ffffff;
+                                max-height: 700px;
+                                overflow-y: auto;
+                            }
+                            .dark .article-content-body .table-responsive-wrapper {
+                                border-color: #334155;
+                                background: #1e293b;
+                                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+                            }
+                            .article-content-body table {
+                                width: 100% !important;
+                                min-width: 600px;
+                                border-collapse: separate !important;
+                                border-spacing: 0 !important;
+                                margin: 0 !important;
+                                font-size: 0.875rem !important;
+                                line-height: 1.4 !important;
+                                text-align: left !important;
+                            }
+                            /* Header: Wajib warna biru khas Genesis / Professional Royal Blue */
+                            .article-content-body table thead,
+                            .article-content-body table tr:first-child:not(:has(td:not(:first-child))),
+                            .article-content-body table thead tr,
+                            .article-content-body table tbody tr:first-child {
+                                position: sticky;
+                                top: 0;
+                                z-index: 10;
+                            }
+                            .article-content-body table thead th,
+                            .article-content-body table thead td,
+                            .article-content-body table tr:first-child th,
+                            .article-content-body table tr:first-child td {
+                                background-color: #1e40af !important; /* Blue (Genesis Blue) */
+                                color: #ffffff !important;
+                                font-weight: 700 !important;
+                                text-transform: uppercase !important;
+                                letter-spacing: 0.05em !important;
+                                font-size: 0.8125rem !important;
+                                padding: 12px 16px !important;
+                                border: 1px solid #1d4ed8 !important;
+                                border-top: none !important;
+                                white-space: nowrap !important;
+                            }
+                            .article-content-body table thead th *,
+                            .article-content-body table tr:first-child th *,
+                            .article-content-body table tr:first-child td * {
+                                color: #ffffff !important;
+                            }
+                            /* Table Body Cells */
+                            .article-content-body table tbody tr td,
+                            .article-content-body table tr:not(:first-child) td,
+                            .article-content-body table tr:not(:first-child) th {
+                                padding: 10px 16px !important;
+                                border-bottom: 1px solid #e2e8f0 !important;
+                                border-right: 1px solid #f1f5f9 !important;
+                                border-left: none !important;
+                                border-top: none !important;
+                                color: #334155 !important;
+                                vertical-align: middle !important;
+                            }
+                            .dark .article-content-body table tbody tr td,
+                            .dark .article-content-body table tr:not(:first-child) td,
+                            .dark .article-content-body table tr:not(:first-child) th {
+                                border-bottom-color: #334155 !important;
+                                border-right-color: #1e293b !important;
+                                color: #cbd5e1 !important;
+                            }
+                            /* Zebra Striping for 1000+ rows */
+                            .article-content-body table tbody tr:nth-child(even),
+                            .article-content-body table tr:not(:first-child):nth-child(even) {
+                                background-color: #f8fafc !important;
+                            }
+                            .dark .article-content-body table tbody tr:nth-child(even),
+                            .dark .article-content-body table tr:not(:first-child):nth-child(even) {
+                                background-color: rgba(30, 41, 59, 0.5) !important;
+                            }
+                            /* Hover row highlighting */
+                            .article-content-body table tbody tr:hover,
+                            .article-content-body table tr:not(:first-child):hover {
+                                background-color: #eff6ff !important;
+                                transition: background-color 0.15s ease;
+                            }
+                            .dark .article-content-body table tbody tr:hover,
+                            .dark .article-content-body table tr:not(:first-child):hover {
+                                background-color: #1e3a8a33 !important;
+                            }
+                            /* Mobile optimization */
+                            @media (max-width: 640px) {
+                                .article-content-body .table-responsive-wrapper {
+                                    margin-left: -1rem;
+                                    margin-right: -1rem;
+                                    border-radius: 0;
+                                    border-left: none;
+                                    border-right: none;
+                                    max-height: 550px;
+                                }
+                                .article-content-body table {
+                                    font-size: 0.8125rem !important;
+                                }
+                                .article-content-body table thead th,
+                                .article-content-body table tr:first-child th,
+                                .article-content-body table tr:first-child td {
+                                    padding: 10px 12px !important;
+                                    font-size: 0.75rem !important;
+                                }
+                                .article-content-body table tbody tr td,
+                                .article-content-body table tr:not(:first-child) td {
+                                    padding: 8px 12px !important;
+                                }
+                            }
+                        </style>
+
+                        <div class="article-content-body prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed
                                     prose-headings:text-gray-900 dark:prose-headings:text-white prose-headings:font-bold
                                     prose-a:text-blue-600 dark:prose-a:text-blue-400 hover:prose-a:text-genesis-pink transition-colors prose-a:no-underline
                                     prose-strong:text-gray-900 dark:prose-strong:text-white">
@@ -131,6 +253,54 @@
                                     }, 2000);
                                 });
                             }
+
+                            // Dynamic Table Enhancement for Excel uploads & responsiveness
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const articleContainer = document.querySelector('.article-content-body');
+                                if (!articleContainer) return;
+
+                                const tables = articleContainer.querySelectorAll('table');
+                                tables.forEach(table => {
+                                    // 1. Wrap each table in a responsive & scrollable container if not already wrapped
+                                    if (!table.parentElement.classList.contains('table-responsive-wrapper')) {
+                                        const wrapper = document.createElement('div');
+                                        wrapper.className = 'table-responsive-wrapper';
+                                        table.parentNode.insertBefore(wrapper, table);
+                                        wrapper.appendChild(table);
+                                    }
+
+                                    // 2. Ensure top row/header cells are properly marked as header with blue background
+                                    const firstRow = table.querySelector('tr');
+                                    if (firstRow) {
+                                        firstRow.classList.add('table-header-row');
+                                        const headerCells = firstRow.querySelectorAll('th, td');
+                                        headerCells.forEach(cell => {
+                                            cell.style.setProperty('background-color', '#1e40af', 'important');
+                                            cell.style.setProperty('color', '#ffffff', 'important');
+                                            cell.style.setProperty('font-weight', '700', 'important');
+                                            cell.style.setProperty('text-align', 'center', 'important');
+                                            // Reset inner span styles often generated by Excel paste
+                                            const innerSpans = cell.querySelectorAll('span, strong, font, b, p');
+                                            innerSpans.forEach(span => {
+                                                span.style.color = '#ffffff';
+                                                span.style.backgroundColor = 'transparent';
+                                            });
+                                        });
+                                    }
+
+                                    // 3. Clear ugly inline colors pasted from Excel for body cells to keep crisp styling
+                                    const bodyRows = table.querySelectorAll('tr:not(:first-child)');
+                                    bodyRows.forEach((row, index) => {
+                                        const cells = row.querySelectorAll('td, th');
+                                        cells.forEach(cell => {
+                                            // If cell has inline bg from Excel (like yellow, green, grey), reset to transparent so zebra stripes take over
+                                            if (cell.style.backgroundColor && cell.style.backgroundColor !== 'inherit') {
+                                                cell.style.backgroundColor = '';
+                                            }
+                                        });
+                                    });
+                                });
+                            });
                         </script>
                         
                         <!-- Footer Info -->

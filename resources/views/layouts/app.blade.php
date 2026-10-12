@@ -21,8 +21,17 @@
         
         /* Smooth transitions */
         .transition-all-300 { transition: all 0.3s ease; }
-        .logo-container img { transition: transform 0.3s ease; }
+        .logo-container img { transform: scale(1); transition: transform 0.3s ease; }
         .logo-container:hover img { transform: scale(1.05); }
+
+        /* Universal Table Styles for Rich Text / Articles */
+        .prose table thead th,
+        .prose table thead td,
+        .prose table tr.table-header-row th,
+        .prose table tr.table-header-row td {
+            background-color: #1e40af !important;
+            color: #ffffff !important;
+        }
     </style>
 
     <!-- Script to prevent dark mode flash -->
