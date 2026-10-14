@@ -18,7 +18,7 @@
 
     <div class="container mx-auto px-4 relative z-10 text-center max-w-6xl">
         <span class="inline-block py-1.5 px-4 rounded-full bg-genesis-pink/20 text-genesis-pink border border-genesis-pink/40 backdrop-blur-md text-xs font-bold mb-6">
-            {{ app()->getLocale() == 'id' ? 'Pendaftaran Olimpiade Nasional 2026 Dibuka!' : 'National Olympiad 2026 Registration is Now Open!' }}
+            {{ app()->getLocale() == 'id' ? 'Pendaftaran IMSEO - Indonesia Mathematic Science English Olympiad 2027 Dibuka!' : 'IMSEO - Indonesia Mathematic Science English Olympiad 2027 Registration is Now Open!' }}
         </span>
         <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
             Genesis Indonesia <br/> <span class="text-genesis-pink">Education Centre</span>
