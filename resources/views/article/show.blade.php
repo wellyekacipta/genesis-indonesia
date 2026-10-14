@@ -55,18 +55,77 @@
 
                         <!-- Prose Content (Using Tailwind Typography + custom overrides for dark mode & responsive Excel tables) -->
                         <style>
-                            /* Responsive Excel Table Styling for Article Content */
+                            /* =====================================================
+                               PARAGRAPH & LINE BREAK SPACING
+                               Ensures enters/blank lines are visually preserved
+                               in article content rendered from rich editor
+                             ====================================================== */
+                            .article-content-body p {
+                                margin-top: 0.85em !important;
+                                margin-bottom: 0.85em !important;
+                                min-height: 1em;
+                            }
+                            /* Empty paragraph used as spacer (pressing Enter in editor) */
+                            .article-content-body p:empty,
+                            .article-content-body p br:only-child {
+                                display: block;
+                                min-height: 1.2em;
+                                margin-top: 0.5em !important;
+                                margin-bottom: 0.5em !important;
+                            }
+                            /* Ensure <br> tags inside paragraphs add proper line space */
+                            .article-content-body br {
+                                display: block;
+                                content: '';
+                                margin-top: 0.4em;
+                            }
+                            /* Headings spacing */
+                            .article-content-body h1,
+                            .article-content-body h2,
+                            .article-content-body h3,
+                            .article-content-body h4,
+                            .article-content-body h5,
+                            .article-content-body h6 {
+                                margin-top: 1.5em !important;
+                                margin-bottom: 0.6em !important;
+                            }
+                            /* List spacing */
+                            .article-content-body ul,
+                            .article-content-body ol {
+                                margin-top: 0.75em !important;
+                                margin-bottom: 0.75em !important;
+                                padding-left: 1.75em !important;
+                            }
+                            .article-content-body li {
+                                margin-top: 0.3em !important;
+                                margin-bottom: 0.3em !important;
+                            }
+                            /* Blockquote */
+                            .article-content-body blockquote {
+                                border-left: 4px solid #1e40af;
+                                padding-left: 1rem;
+                                margin: 1.25em 0 !important;
+                                color: #64748b;
+                                font-style: italic;
+                            }
+
+                            /* =====================================================
+                               RESPONSIVE EXCEL TABLE STYLING
+                               Supports 1000+ rows with sticky blue header,
+                               horizontal & vertical scroll, zebra striping
+                             ====================================================== */
                             .article-content-body .table-responsive-wrapper {
                                 width: 100%;
                                 overflow-x: auto;
+                                overflow-y: auto;
                                 -webkit-overflow-scrolling: touch;
                                 margin: 1.75rem 0;
                                 border-radius: 0.75rem;
                                 border: 1px solid #e2e8f0;
                                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
                                 background: #ffffff;
-                                max-height: 700px;
-                                overflow-y: auto;
+                                /* 80vh gives large scroll area for 1000+ rows without breaking layout */
+                                max-height: 80vh;
                             }
                             .dark .article-content-body .table-responsive-wrapper {
                                 border-color: #334155;
@@ -82,10 +141,10 @@
                                 font-size: 0.875rem !important;
                                 line-height: 1.4 !important;
                                 text-align: left !important;
+                                /* table-layout fixed for consistent columns */
+                                table-layout: auto !important;
                             }
-                            /* Header: Wajib warna biru khas Genesis / Professional Royal Blue */
-                            .article-content-body table thead,
-                            .article-content-body table tr:first-child:not(:has(td:not(:first-child))),
+                            /* HEADER: Sticky blue Genesis header */
                             .article-content-body table thead tr,
                             .article-content-body table tbody tr:first-child {
                                 position: sticky;
@@ -96,21 +155,24 @@
                             .article-content-body table thead td,
                             .article-content-body table tr:first-child th,
                             .article-content-body table tr:first-child td {
-                                background-color: #1e40af !important; /* Blue (Genesis Blue) */
+                                background-color: #1e40af !important;
                                 color: #ffffff !important;
                                 font-weight: 700 !important;
                                 text-transform: uppercase !important;
-                                letter-spacing: 0.05em !important;
+                                letter-spacing: 0.04em !important;
                                 font-size: 0.8125rem !important;
                                 padding: 12px 16px !important;
                                 border: 1px solid #1d4ed8 !important;
                                 border-top: none !important;
-                                white-space: nowrap !important;
+                                /* Allow wrapping on small screens */
+                                white-space: normal !important;
+                                word-break: break-word;
                             }
                             .article-content-body table thead th *,
                             .article-content-body table tr:first-child th *,
                             .article-content-body table tr:first-child td * {
                                 color: #ffffff !important;
+                                background-color: transparent !important;
                             }
                             /* Table Body Cells */
                             .article-content-body table tbody tr td,
@@ -123,6 +185,7 @@
                                 border-top: none !important;
                                 color: #334155 !important;
                                 vertical-align: middle !important;
+                                word-break: break-word;
                             }
                             .dark .article-content-body table tbody tr td,
                             .dark .article-content-body table tr:not(:first-child) td,
@@ -131,7 +194,7 @@
                                 border-right-color: #1e293b !important;
                                 color: #cbd5e1 !important;
                             }
-                            /* Zebra Striping for 1000+ rows */
+                            /* Zebra Striping — works for unlimited rows */
                             .article-content-body table tbody tr:nth-child(even),
                             .article-content-body table tr:not(:first-child):nth-child(even) {
                                 background-color: #f8fafc !important;
@@ -140,7 +203,7 @@
                             .dark .article-content-body table tr:not(:first-child):nth-child(even) {
                                 background-color: rgba(30, 41, 59, 0.5) !important;
                             }
-                            /* Hover row highlighting */
+                            /* Row hover highlight */
                             .article-content-body table tbody tr:hover,
                             .article-content-body table tr:not(:first-child):hover {
                                 background-color: #eff6ff !important;
@@ -158,10 +221,11 @@
                                     border-radius: 0;
                                     border-left: none;
                                     border-right: none;
-                                    max-height: 550px;
+                                    max-height: 70vh;
                                 }
                                 .article-content-body table {
                                     font-size: 0.8125rem !important;
+                                    min-width: 480px;
                                 }
                                 .article-content-body table thead th,
                                 .article-content-body table tr:first-child th,
