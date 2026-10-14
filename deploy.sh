@@ -56,7 +56,12 @@ fi
 echo "Running database migrations..."
 $PHP_CMD artisan migrate --force
 
-# 5. Optimize Laravel caches
+# 5. Fix storage & bootstrap/cache permissions (wajib agar Laravel bisa write log & cache)
+echo "Fixing storage and cache permissions..."
+chmod -R 775 storage bootstrap/cache 2>/dev/null || chmod -R 777 storage bootstrap/cache
+chown -R $(whoami):$(whoami) storage bootstrap/cache 2>/dev/null || true
+
+# 5a. Optimize Laravel caches
 echo "Optimizing Laravel configuration and routes..."
 $PHP_CMD artisan optimize
 
