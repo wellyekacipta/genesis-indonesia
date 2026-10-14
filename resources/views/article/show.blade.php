@@ -133,15 +133,14 @@
                                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
                             }
                             .article-content-body table {
-                                width: 100% !important;
-                                min-width: 600px;
+                                width: max-content !important;
+                                min-width: 100%;
                                 border-collapse: separate !important;
                                 border-spacing: 0 !important;
                                 margin: 0 !important;
                                 font-size: 0.875rem !important;
                                 line-height: 1.4 !important;
                                 text-align: left !important;
-                                /* table-layout fixed for consistent columns */
                                 table-layout: auto !important;
                             }
                             /* HEADER: Sticky blue Genesis header */
@@ -164,9 +163,8 @@
                                 padding: 12px 16px !important;
                                 border: 1px solid #1d4ed8 !important;
                                 border-top: none !important;
-                                /* Allow wrapping on small screens */
-                                white-space: normal !important;
-                                word-break: break-word;
+                                /* nowrap agar teks header tidak terpotong — scroll horizontal yang handle tabel lebar */
+                                white-space: nowrap !important;
                             }
                             .article-content-body table thead th *,
                             .article-content-body table tr:first-child th *,
