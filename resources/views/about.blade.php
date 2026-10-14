@@ -28,9 +28,9 @@
             <div class="lg:col-span-1">
                 <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-150 dark:border-gray-700 sticky top-24 text-center">
                     <div class="relative w-40 h-40 mx-auto mb-6 rounded-3xl overflow-hidden border-4 border-white dark:border-gray-700 shadow-lg">
-                        <img src="{{ asset('images/director.jpg') }}" alt="Muhammad Ridwan, S.Ag." class="w-full h-full object-cover">
+                        <img src="{{ asset('images/director.jpg') }}" alt="Mr. Ridwan" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Muhammad Ridwan, S.Ag.</h3>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Mr. Ridwan</h3>
                     <p class="text-genesis-pink font-bold text-xs uppercase tracking-widest mt-1 mb-6">
                         {{ app()->getLocale() == 'id' ? 'Direktur Utama' : 'Executive Director' }}
                     </p>
@@ -198,7 +198,7 @@
                 <span class="px-3 py-1 bg-genesis-pink/10 text-genesis-pink text-xs font-bold rounded-full mb-3 uppercase tracking-wider">
                     {{ app()->getLocale() == 'id' ? 'Direktur Utama' : 'Managing Director' }}
                 </span>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Muhammad Ridwan, S.Ag.</h3>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Mr. Ridwan</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-xs px-4 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
                         ? 'Direktur Utama Genesis Indonesia.' 
@@ -218,7 +218,7 @@
                 <span class="px-3 py-1 bg-gray-200/60 text-gray-700 dark:bg-gray-800 dark:text-gray-300 text-xs font-semibold rounded-full mb-3 uppercase tracking-wider">
                     {{ app()->getLocale() == 'id' ? 'Operasional: General Affair' : 'Operations: General Affair' }}
                 </span>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Krisna Adi Putra, S.T.</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Mr. Krisna</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-xs px-4 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
                         ? 'Mengelola administrasi operasional, logistik lapangan, dan sarana prasarana lembaga.' 
@@ -235,7 +235,7 @@
                 <span class="px-3 py-1 bg-gray-200/60 text-gray-700 dark:bg-gray-800 dark:text-gray-300 text-xs font-semibold rounded-full mb-3 uppercase tracking-wider">
                     {{ app()->getLocale() == 'id' ? 'Keuangan: Accounting Finance' : 'Finance: Accounting & Finance' }}
                 </span>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Dinda, S.Pd.</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Miss Dinda</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-xs px-4 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
                         ? 'Mengelola transparansi arus kas anggaran keuangan, invoice, dan administrasi transaksi.' 
@@ -255,7 +255,7 @@
                 <span class="px-2.5 py-0.5 bg-genesis-blue/5 text-genesis-blue dark:bg-blue-950/20 dark:text-blue-400 text-[10px] font-bold rounded-full mb-3 uppercase tracking-wider">
                     {{ app()->getLocale() == 'id' ? 'Akademik: Tim Kurikulum' : 'Academic: Curriculum Team' }}
                 </span>
-                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Didin Rasidin, A.Md., Kom.</h3>
+                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Mr. Tenri</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-[11px] px-2 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
                         ? 'Mengembangkan materi kurikulum sains, validasi bank soal, serta evaluasi hasil belajar.' 
@@ -272,7 +272,7 @@
                 <span class="px-2.5 py-0.5 bg-genesis-pink/5 text-genesis-pink text-[10px] font-bold rounded-full mb-3 uppercase tracking-wider">
                     {{ app()->getLocale() == 'id' ? 'Teknologi: Programmer UI/UX' : 'Technology: UI/UX Programmer' }}
                 </span>
-                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Welly Eka Cipta, S.Kom.</h3>
+                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Mr. Welly</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-[11px] px-2 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
                         ? 'Merancang platform ujian online terintegrasi, pemeliharaan server, dan manajemen UI/UX.' 
@@ -289,7 +289,7 @@
                 <span class="px-2.5 py-0.5 bg-genesis-blue/5 text-genesis-blue dark:bg-blue-950/20 dark:text-blue-400 text-[10px] font-bold rounded-full mb-3 uppercase tracking-wider">
                     {{ app()->getLocale() == 'id' ? 'Pemasaran & Kemitraan: Digital Marketing' : 'Marketing & Partnership: Digital Marketing' }}
                 </span>
-                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Muhammad Ilham, S.H.</h3>
+                <h3 class="text-base font-bold text-gray-900 dark:text-white mb-1">Mr. Aziz</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-[11px] px-2 leading-relaxed">
                     {{ app()->getLocale() == 'id' 
                         ? 'Memimpin digital marketing, branding media sosial, dan kerja sama kemitraan institusi luar.' 
