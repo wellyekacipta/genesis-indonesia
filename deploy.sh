@@ -23,9 +23,11 @@ echo "Using PHP command: $PHP_CMD"
 
 cd "$REPO_PATH"
 
-# 1. Pull latest code
-echo "Pulling latest changes from Git (branch: $BRANCH)..."
-git pull origin "$BRANCH"
+# 1. Reset local changes & pull latest code (force sync with GitHub)
+echo "Resetting local changes and pulling latest from Git (branch: $BRANCH)..."
+git fetch origin "$BRANCH"
+git reset --hard "origin/$BRANCH"
+git pull origin "$BRANCH" || true
 
 # 2. Check and run Composer
 if command -v composer >/dev/null 2>&1 && [ "$PHP_CMD" = "php" ]; then
